@@ -5,16 +5,44 @@ using UnityEngine.UI;
 
 public class Intro : MonoBehaviour
 {
-    [SerializeField] private Image overlay;
-    [SerializeField] private Image loadingImage;
+    [SerializeField] private Image overlay, loadingImage;
+    [SerializeField] private GameObject introObj;
+    [SerializeField] private float introTime;
+    private bool introPlayed = false;
 
     private void Start()
     {
+        if (PlayerPrefs.GetInt("n") % 1 == 0)
+        {
+            StartCoroutine(PlayIntro());
+            introPlayed = true;
+        }
+        else
+        {
+            StartCoroutine(LoadScene());
+        }
+        PlayerPrefs.SetInt("n", PlayerPrefs.GetInt("n") + 1);
+    }
+    private IEnumerator PlayIntro()
+    {
+        yield return new WaitForEndOfFrame();
+        introObj.SetActive(true);
+        overlay.color = Color.clear;
+        yield return new WaitForSecondsRealtime(introTime);
         StartCoroutine(LoadScene());
     }
-
     private IEnumerator LoadScene()
     {
+        if (!introPlayed)
+        {
+            for (float i = 1; i > 0; i -= Time.unscaledDeltaTime * 6)
+            {
+                overlay.color = new Color(0, 0, 0, i);
+                yield return null;
+            }
+            overlay.color = Color.clear;
+            overlay.gameObject.SetActive(false);
+        }
         float progress = 0f;
         yield return new WaitForSecondsRealtime(1f);
         while (progress < 0.05f)
@@ -50,6 +78,7 @@ public class Intro : MonoBehaviour
         }
         progress = 1f;
         loadingImage.fillAmount = progress;
+        overlay.gameObject.SetActive(true);
         for (float t = 0; t <= 1; t += Time.unscaledDeltaTime * 2f)
         {
             overlay.color = new Color(0, 0, 0, t);
