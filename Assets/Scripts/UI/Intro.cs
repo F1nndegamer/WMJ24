@@ -12,7 +12,7 @@ public class Intro : MonoBehaviour
 
     private void Start()
     {
-        if (PlayerPrefs.GetInt("n") % 1 == 0)
+        if (PlayerPrefs.GetInt("n") % 5 == 0)
         {
             StartCoroutine(PlayIntro());
             introPlayed = true;
