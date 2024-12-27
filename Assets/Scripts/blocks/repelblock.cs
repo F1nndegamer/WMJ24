@@ -1,0 +1,52 @@
+using UnityEngine;
+
+public class RepelBlock : MonoBehaviour
+{
+    private Vector3 offset;
+    private float zCoordinate;
+    public bool isColliding;
+    private bool isDragging;
+
+    private void OnMouseDown()
+    {
+            zCoordinate = Camera.main.WorldToScreenPoint(transform.position).z;
+            offset = transform.position - GetMouseWorldPosition();
+            isDragging = true;
+        
+    }
+
+    private void OnMouseDrag()
+    {
+        if (isDragging)
+        {
+            transform.position = GetMouseWorldPosition() + offset;
+        }
+    }
+
+    private void OnMouseUp()
+    {
+        isDragging = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            isColliding = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            isColliding = false;
+        }
+    }
+
+    Vector3 GetMouseWorldPosition()
+    {
+        Vector3 mouseScreenPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, zCoordinate);
+        return Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+    }
+}
