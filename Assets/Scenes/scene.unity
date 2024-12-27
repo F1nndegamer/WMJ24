@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 1436931108}
   - component: {fileID: 1436931107}
   m_Layer: 0
-  m_Name: Square (1)
+  m_Name: Attract
   m_TagString: Attractor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
