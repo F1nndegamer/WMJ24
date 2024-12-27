@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class RepelBlock : MonoBehaviour
+public class BlockDrag : MonoBehaviour
 {
     private Vector3 offset;
     private float zCoordinate;
     public bool isColliding;
     private bool isDragging;
-
+    public bool willdestroy;
     private void OnMouseDown()
     {
             zCoordinate = Camera.main.WorldToScreenPoint(transform.position).z;
@@ -26,6 +26,8 @@ public class RepelBlock : MonoBehaviour
     private void OnMouseUp()
     {
         isDragging = false;
+        if(willdestroy)
+            Destroy(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -34,6 +36,10 @@ public class RepelBlock : MonoBehaviour
         {
             isColliding = true;
         }
+        if (other.gameObject.CompareTag("destroywindow"))
+        {
+            willdestroy = true;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D other)
@@ -41,6 +47,10 @@ public class RepelBlock : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             isColliding = false;
+        }
+        if (other.gameObject.CompareTag("destroywindow"))
+        {
+            willdestroy = false;
         }
     }
 

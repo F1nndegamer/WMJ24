@@ -6,7 +6,7 @@ public class playerscript : MonoBehaviour
     public float repulsionForce = 10f;
     public float interactionRange = 5f;
     public float minimumDistance = 1f;
-
+    public GameObject[] attractors;
     private void Update()
     {
         AttractOrRepelObjects();
@@ -14,14 +14,14 @@ public class playerscript : MonoBehaviour
 
     private void AttractOrRepelObjects()
     {
-        GameObject[] attractors = GameObject.FindGameObjectsWithTag("Attractor");
+        attractors = GameObject.FindGameObjectsWithTag("Attractor");
         GameObject[] repellers = GameObject.FindGameObjectsWithTag("Repeller");
         Vector3 attractionDirection = Vector3.zero;
         Vector3 repulsionDirection = Vector3.zero;
 
         foreach (GameObject attractor in attractors)
         {
-            AttachBlock colliderCheck = attractor.GetComponent<AttachBlock>();
+            BlockDrag colliderCheck = attractor.GetComponent<BlockDrag>();
             if (colliderCheck.isColliding == false)
             {
                 float distanceToAttractor = Vector3.Distance(transform.position, attractor.transform.position);
@@ -34,7 +34,7 @@ public class playerscript : MonoBehaviour
         }
         foreach (GameObject repeller in repellers)
         {
-            RepelBlock colliderCheck = repeller.GetComponent<RepelBlock>();
+            BlockDrag colliderCheck = repeller.GetComponent<BlockDrag>();
             if (colliderCheck.isColliding == false)
             {
                 float distanceToRepeller = Vector3.Distance(transform.position, repeller.transform.position);
@@ -51,7 +51,7 @@ public class playerscript : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
+        Gizmos.color = Color.blue;
         GameObject[] attractors = GameObject.FindGameObjectsWithTag("Attractor");
         foreach (GameObject attractor in attractors)
         {
