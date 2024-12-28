@@ -7,6 +7,7 @@ TagManager:
   - Attractor
   - Repeller
   - destroywindow
+  - Enemy
   layers:
   - Default
   - TransparentFX
