@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6222657028248589904}
   - component: {fileID: 2747567378883553304}
   m_Layer: 0
-  m_Name: Attract
+  m_Name: Attract no move
   m_TagString: Attractor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isColliding: 0
-  canMove: 1
+  canMove: 0
 --- !u!61 &6222657028248589904
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -176,4 +176,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7

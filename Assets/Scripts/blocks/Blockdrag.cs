@@ -6,7 +6,8 @@ public class BlockDrag : MonoBehaviour
     private float zCoordinate;
     public bool isColliding;
     private bool isDragging;
-    public bool willdestroy;
+    private bool willdestroy;
+    public bool canMove;
     private void OnMouseDown()
     {
             zCoordinate = Camera.main.WorldToScreenPoint(transform.position).z;
@@ -17,7 +18,7 @@ public class BlockDrag : MonoBehaviour
 
     private void Update()
     {
-        if (isDragging)
+        if (isDragging && canMove)
         {
             transform.position = GetMouseWorldPosition() + offset;
         }

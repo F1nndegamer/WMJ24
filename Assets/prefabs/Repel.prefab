@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isColliding: 0
-  willdestroy: 0
+  canMove: 1
 --- !u!61 &9205445875110445952
 BoxCollider2D:
   m_ObjectHideFlags: 0
