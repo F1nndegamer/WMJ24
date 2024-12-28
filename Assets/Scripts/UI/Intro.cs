@@ -29,7 +29,8 @@ public class Intro : MonoBehaviour
         introObj.SetActive(true);
         overlay.color = Color.clear;
         yield return new WaitForSecondsRealtime(introTime);
-        StartCoroutine(LoadScene());
+        
+        SceneManager.LoadSceneAsync(1);
     }
     private IEnumerator LoadScene()
     {
