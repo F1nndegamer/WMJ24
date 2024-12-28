@@ -1,16 +1,56 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Settings : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] private Toggle fullTogg, lightTogg;
+    [SerializeField] private Slider volumeSlider;
+    public bool fullScreen = false, lightMode = false;
+    [Range(0, 1)]
+    public float volume = 1f;
+    
+    [SerializeField] private GameObject invertObj;
     void Start()
     {
-        
+        if (PlayerPrefs.GetString("first") != "true")
+        {
+            Load();
+        }else{
+            PlayerPrefs.SetString("first", "true");
+        }
+        InvokeRepeating("Check", 0.1f, 3);
     }
-
-    // Update is called once per frame
     void Update()
     {
-        
+
+    }
+    void Check(){
+        fullScreen = Screen.fullScreen;
+        if(fullScreen != fullTogg.isOn) fullTogg.isOn = fullScreen;
+        Save();
+    }
+    void Load()
+    {
+        fullTogg.isOn = fullScreen = PlayerPrefs.GetInt("full") == 1;
+        lightTogg.isOn = lightMode = PlayerPrefs.GetInt("light") == 1;
+        volumeSlider.value = volume = PlayerPrefs.GetFloat("volume");
+    }
+    void Save()
+    {
+        PlayerPrefs.SetInt("full", fullTogg ? 1 : 0);
+        PlayerPrefs.SetInt("light", lightTogg ? 1 : 0);
+        PlayerPrefs.SetFloat("volume", volumeSlider.value);
+    }
+    public void SetVol(float vol){
+        AudioListener.volume = vol;
+        volume = vol;
+    }
+    public void SetFull(bool val){
+        Screen.fullScreen = val;
+        fullScreen = val;
+    }
+    public void SetLight(bool val){
+        lightMode = val;
+        invertObj.SetActive(val);
     }
 }
