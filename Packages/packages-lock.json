@@ -1,12 +1,19 @@
 {
   "dependencies": {
     "com.coffee.softmask-for-ugui": {
-      "version": "file:F:/Docs/SoftMaskForUGUI-3.1.1/SoftMaskForUGUI-3.1.1/Packages/src",
+      "version": "https://github.com/mob-sakai/SoftMaskForUGUI.git?path=Packages/src",
       "depth": 0,
-      "source": "local",
+      "source": "git",
       "dependencies": {
         "com.unity.ugui": "1.0.0"
-      }
+      },
+      "hash": "6e0d82b1bdc6aac55fc4adfe8369240cf842519f"
+    },
+    "com.merry-yellow.code-assist": {
+      "version": "file:com.merry-yellow.code-assist",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
     },
     "com.unity.2d.animation": {
       "version": "10.1.4",
