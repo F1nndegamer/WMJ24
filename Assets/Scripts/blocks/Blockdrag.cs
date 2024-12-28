@@ -15,7 +15,7 @@ public class BlockDrag : MonoBehaviour
         
     }
 
-    private void OnMouseDrag()
+    private void Update()
     {
         if (isDragging)
         {
