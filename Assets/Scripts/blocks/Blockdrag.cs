@@ -8,6 +8,7 @@ public class BlockDrag : MonoBehaviour
     private bool isDragging;
     private bool willdestroy;
     public bool canMove;
+    public bool IsPlaced;
     private void OnMouseDown()
     {
             zCoordinate = Camera.main.WorldToScreenPoint(transform.position).z;
@@ -21,14 +22,18 @@ public class BlockDrag : MonoBehaviour
         if (isDragging && canMove)
         {
             transform.position = GetMouseWorldPosition() + offset;
+            IsPlaced = false;
         }
     }
 
     private void OnMouseUp()
     {
         isDragging = false;
-        if(willdestroy)
+        IsPlaced = true;
+        if (willdestroy)
+        {
             Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)

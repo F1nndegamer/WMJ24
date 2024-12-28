@@ -30,6 +30,8 @@ public class InventoryDrag : MonoBehaviour
         isDragging = false;
         InventoryDrag clonedrag = clone.GetComponent<InventoryDrag>();
         Destroy(clonedrag);
+        BlockDrag blockDrag = clone.GetComponent<BlockDrag>();
+        blockDrag.IsPlaced = true;
     }
     Vector3 GetMouseWorldPosition()
     {

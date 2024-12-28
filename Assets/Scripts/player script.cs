@@ -21,29 +21,60 @@ public class playerscript : MonoBehaviour
 
         foreach (GameObject attractor in attractors)
         {
-            BlockDrag colliderCheck = attractor.GetComponent<BlockDrag>();
-            if (colliderCheck.isColliding == false)
+            BlockDrag blockDrag = attractor.GetComponent<BlockDrag>();
+            if (blockDrag.canMove)
             {
-                float distanceToAttractor = Vector3.Distance(transform.position, attractor.transform.position);
-                if (distanceToAttractor <= interactionRange && distanceToAttractor > minimumDistance)
+                if (blockDrag.isColliding == false)
                 {
-                    Vector3 directionToAttractor = (attractor.transform.position - transform.position).normalized;
-                    attractionDirection += directionToAttractor / Mathf.Max(distanceToAttractor, 1f);
+                    float distanceToAttractor = Vector3.Distance(transform.position, attractor.transform.position);
+                    if (distanceToAttractor <= interactionRange && distanceToAttractor > minimumDistance)
+                    {
+                        Vector3 directionToAttractor = (attractor.transform.position - transform.position).normalized;
+                        attractionDirection += directionToAttractor / Mathf.Max(distanceToAttractor, 1f);
+                    }
+                }
+            }
+            else if (blockDrag.IsPlaced)
+            {
+                if (blockDrag.isColliding == false)
+                {
+                    float distanceToAttractor = Vector3.Distance(transform.position, attractor.transform.position);
+                    if (distanceToAttractor <= interactionRange && distanceToAttractor > minimumDistance)
+                    {
+                        Vector3 directionToAttractor = (attractor.transform.position - transform.position).normalized;
+                        attractionDirection += directionToAttractor / Mathf.Max(distanceToAttractor, 1f);
+                    }
                 }
             }
         }
         foreach (GameObject repeller in repellers)
         {
-            BlockDrag colliderCheck = repeller.GetComponent<BlockDrag>();
-            if (colliderCheck.isColliding == false)
+            BlockDrag blockDrag = repeller.GetComponent<BlockDrag>();
+            if (blockDrag.canMove)
             {
-                float distanceToRepeller = Vector3.Distance(transform.position, repeller.transform.position);
-                if (distanceToRepeller <= interactionRange && distanceToRepeller > minimumDistance)
+                if (blockDrag.isColliding == false)
                 {
-                    Vector3 directionToRepeller = (transform.position - repeller.transform.position).normalized;
-                    repulsionDirection += directionToRepeller / Mathf.Max(distanceToRepeller, 1f);
+                    float distanceToRepeller = Vector3.Distance(transform.position, repeller.transform.position);
+                    if (distanceToRepeller <= interactionRange && distanceToRepeller > minimumDistance)
+                    {
+                        Vector3 directionToRepeller = (transform.position - repeller.transform.position).normalized;
+                        repulsionDirection += directionToRepeller / Mathf.Max(distanceToRepeller, 1f);
+                    }
                 }
             }
+            if (blockDrag.IsPlaced)
+            {
+                if (blockDrag.isColliding == false)
+                {
+                    float distanceToRepeller = Vector3.Distance(transform.position, repeller.transform.position);
+                    if (distanceToRepeller <= interactionRange && distanceToRepeller > minimumDistance)
+                    {
+                        Vector3 directionToRepeller = (transform.position - repeller.transform.position).normalized;
+                        repulsionDirection += directionToRepeller / Mathf.Max(distanceToRepeller, 1f);
+                    }
+                }
+            }
+
         }
         Vector3 movement = (attractionDirection * attractionSpeed) + (repulsionDirection * repulsionForce);
         transform.position += movement * Time.deltaTime;
