@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -11,27 +10,27 @@ public class InventoryDrag : MonoBehaviour
     public GameObject clone;
     private void OnMouseDown()
     {
-        if(!PlayerScript.Instance.SimilationStarted)
-            {
+        if (!PlayerScript.Instance.SimilationStarted)
+        {
             clone = Instantiate(prefab, transform.position, transform.rotation);
             clone.transform.position = new Vector3(clone.transform.position.x, clone.transform.position.y, 1);
-            clone.GetComponent<BlockDrag>().offset = transform.position - GetMouseWorldPosition();
-            clone.GetComponent<BlockDrag>().isDragging = true;
-            StartCoroutine(onDragged());
+            offset = transform.position - GetMouseWorldPosition();
+            isDragging = true;
         }
 
     }
-    private IEnumerator onDragged(){
-        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
-        renderer.color = Color.clear;
-        while(renderer.color.a < 1){
-            renderer.color = new Color(1, 1, 1, renderer.color.a + Time.deltaTime * 2);
-            yield return null;
+
+    private void OnMouseDrag()
+    {
+        if (isDragging)
+        {
+            clone.transform.position = GetMouseWorldPosition() + offset;
+            clone.transform.position = new Vector3(clone.transform.position.x, clone.transform.position.y, 1);
         }
-        renderer.color = Color.white;
     }
     private void OnMouseUp()
     {
+        isDragging = false;
         if (clone != null)
         {
             InventoryDrag clonedrag = clone.GetComponent<InventoryDrag>();
