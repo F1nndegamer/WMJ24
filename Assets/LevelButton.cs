@@ -10,6 +10,7 @@ public class LevelButton : MonoBehaviour
     public Difficulty difficulty = Difficulty.Easy;
     [SerializeField] TextMeshProUGUI levelText;
     [SerializeField] Image[] images;
+    public Color[] colors = { Color.white, Color.white, Color.white };
 
     void Start()
     {
@@ -19,9 +20,12 @@ public class LevelButton : MonoBehaviour
     public void ButtonUpdate()
     {
         levelText.text = n.ToString();
-        foreach(Image image in images){
-            image.color = Color.white;
-            //Set color based on difficutly
+        int i = 0;
+        if (difficulty == Difficulty.Medium) { i = 1; } else if (difficulty == Difficulty.Hard) { i = 2; }
+        Color imgColor = colors[i];
+        foreach (Image image in images)
+        {
+            image.color = imgColor;
         }
     }
     private IEnumerator ButtonIn()

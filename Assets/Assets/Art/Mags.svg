@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   sodipodi:docname="Mags.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.96746633"
+     inkscape:cx="-1597.4716"
+     inkscape:cy="1558.7106"
+     inkscape:window-width="1366"
+     inkscape:window-height="697"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient5438">
+      <stop
+         style="stop-color:#01001b;stop-opacity:1;"
+         offset="0"
+         id="stop5434" />
+      <stop
+         style="stop-color:#01003c;stop-opacity:1;"
+         offset="1"
+         id="stop5436" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient5370">
+      <stop
+         style="stop-color:#1b0000;stop-opacity:1;"
+         offset="0"
+         id="stop5366" />
+      <stop
+         style="stop-color:#3c0000;stop-opacity:1;"
+         offset="1"
+         id="stop5368" />
+    </linearGradient>
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#pattern5211"
+       id="pattern5232"
+       patternTransform="matrix(-1.8032669,-1.8086357,-13.338151,13.298563,56.778821,58.657942)" />
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#pattern5211"
+       id="pattern5226"
+       patternTransform="matrix(-1.8032669,-1.8086357,-13.338151,13.298563,56.778821,58.657942)" />
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#Strips1_1white"
+       id="pattern5211"
+       patternTransform="matrix(-1.8032669,-1.8086357,-13.338151,13.298563,56.778822,58.657943)" />
+    <pattern
+       inkscape:collect="always"
+       patternUnits="userSpaceOnUse"
+       width="2"
+       height="1"
+       patternTransform="translate(0,0) scale(10,10)"
+       id="Strips1_1white"
+       inkscape:stockid="Stripes 1:1 white">
+      <rect
+         style="fill:white;stroke:none"
+         x="0"
+         y="-0.5"
+         width="1"
+         height="2"
+         id="rect3489" />
+    </pattern>
+    <mask
+       maskUnits="userSpaceOnUse"
+       id="mask5222">
+      <rect
+         style="opacity:0.171206;fill:url(#pattern5226);fill-opacity:1;stroke:none;stroke-width:8.66788;stroke-linecap:round;stroke-miterlimit:4.4;stroke-dasharray:none;stroke-dashoffset:49.1339;stroke-opacity:0.92;paint-order:markers fill stroke"
+         id="rect5224"
+         width="334.24948"
+         height="160.99974"
+         x="-226.72076"
+         y="-196.84166"
+         ry="0"
+         inkscape:label="rect2502" />
+    </mask>
+    <mask
+       maskUnits="userSpaceOnUse"
+       id="mask5228">
+      <rect
+         style="opacity:0.171206;fill:url(#pattern5232);fill-opacity:1;stroke:none;stroke-width:8.66788;stroke-linecap:round;stroke-miterlimit:4.4;stroke-dasharray:none;stroke-dashoffset:49.1339;stroke-opacity:0.92;paint-order:markers fill stroke"
+         id="rect5230"
+         width="334.24948"
+         height="160.99974"
+         x="-226.72076"
+         y="-196.84166"
+         ry="0"
+         inkscape:label="rect2502" />
+    </mask>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5370"
+       id="linearGradient5372"
+       x1="-367.48825"
+       y1="68.069771"
+       x2="-457.47092"
+       y2="-19.724764"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5438"
+       id="linearGradient5380"
+       gradientUnits="userSpaceOnUse"
+       x1="-367.48825"
+       y1="68.069771"
+       x2="-457.47092"
+       y2="-19.724764"
+       gradientTransform="translate(0,140.00714)" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <circle
+       style="fill:#0f0000;fill-opacity:0.94517541;stroke:#ff3030;stroke-width:4;stroke-linecap:round;stroke-miterlimit:4.4;stroke-dashoffset:49.1339;stroke-opacity:0.92105263;paint-order:markers fill stroke;stroke-dasharray:none"
+       id="path922"
+       cx="-120.28238"
+       cy="134.97926"
+       r="42.543606"
+       inkscape:export-filename="NorthLock.png"
+       inkscape:export-xdpi="145.9783"
+       inkscape:export-ydpi="145.9783" />
+    <text
+       xml:space="preserve"
+       style="font-size:56.5373px;line-height:0;font-family:'LEMON MILK';-inkscape-font-specification:'LEMON MILK';text-align:center;text-anchor:middle;fill:#ed2c2c;fill-opacity:0.996078;stroke:none;stroke-width:29.9177;stroke-linecap:round;stroke-miterlimit:4.4;stroke-dashoffset:49.1339;stroke-opacity:0.921053;paint-order:markers fill stroke"
+       x="-120.25457"
+       y="156.00157"
+       id="text1164"><tspan
+         sodipodi:role="line"
+         id="tspan1162"
+         style="fill:#ed2c2c;fill-opacity:0.996078;stroke:none;stroke-width:29.9177"
+         x="-120.25457"
+         y="156.00157">N</tspan></text>
+    <circle
+       style="fill:#00010f;fill-opacity:0.94517499;stroke:#2c31ed;stroke-width:4;stroke-linecap:round;stroke-miterlimit:4.4;stroke-dasharray:none;stroke-dashoffset:49.1339;stroke-opacity:0.92000002;paint-order:markers fill stroke"
+       id="circle2306"
+       cx="-17.404203"
+       cy="134.97926"
+       r="42.543606"
+       inkscape:export-filename="SouthLock.png"
+       inkscape:export-xdpi="145.9783"
+       inkscape:export-ydpi="145.9783" />
+    <text
+       xml:space="preserve"
+       style="font-size:56.5373px;line-height:0;font-family:'LEMON MILK';-inkscape-font-specification:'LEMON MILK';text-align:center;text-anchor:middle;fill:#2c31ed;fill-opacity:0.99607801;stroke:none;stroke-width:29.9177;stroke-linecap:round;stroke-miterlimit:4.4;stroke-dashoffset:49.1339;stroke-opacity:0.921053;paint-order:markers fill stroke"
+       x="-17.376394"
+       y="156.00157"
+       id="text2310"><tspan
+         sodipodi:role="line"
+         id="tspan2308"
+         style="fill:#2c31ed;fill-opacity:0.99607801;stroke:none;stroke-width:29.9177"
+         x="-17.376394"
+         y="156.00157">S</tspan></text>
+    <circle
+       style="fill:#0f0000;fill-opacity:0.945175;stroke:none;stroke-width:4;stroke-linecap:round;stroke-miterlimit:4.4;stroke-dasharray:none;stroke-dashoffset:49.1339;stroke-opacity:0.921053;paint-order:markers fill stroke"
+       id="circle2414"
+       cx="-121.92326"
+       cy="237.26103"
+       r="42.543606"
+       inkscape:export-filename="NorthNo.png"
+       inkscape:export-xdpi="152.84084"
+       inkscape:export-ydpi="152.84084" />
+    <text
+       xml:space="preserve"
+       style="font-size:56.5373px;line-height:0;font-family:'LEMON MILK';-inkscape-font-specification:'LEMON MILK';text-align:center;text-anchor:middle;fill:#ed2c2c;fill-opacity:0.996078;stroke:none;stroke-width:29.9177;stroke-linecap:round;stroke-miterlimit:4.4;stroke-dashoffset:49.1339;stroke-opacity:0.921053;paint-order:markers fill stroke"
+       x="-121.89545"
+       y="258.28333"
+       id="text2418"><tspan
+         sodipodi:role="line"
+         id="tspan2416"
+         style="fill:#ed2c2c;fill-opacity:0.996078;stroke:none;stroke-width:29.9177"
+         x="-121.89545"
+         y="258.28333">N</tspan></text>
+    <circle
+       style="fill:#00010f;fill-opacity:0.945175;stroke:none;stroke-width:4;stroke-linecap:round;stroke-miterlimit:4.4;stroke-dasharray:none;stroke-dashoffset:49.1339;stroke-opacity:0.92;paint-order:markers fill stroke"
+       id="circle2420"
+       cx="-19.045088"
+       cy="237.26103"
+       r="42.543606"
+       inkscape:export-filename="SouthNo.png"
+       inkscape:export-xdpi="152.84082"
+       inkscape:export-ydpi="152.84082" />
+    <text
+       xml:space="preserve"
+       style="font-size:56.5373px;line-height:0;font-family:'LEMON MILK';-inkscape-font-specification:'LEMON MILK';text-align:center;text-anchor:middle;fill:#2c31ed;fill-opacity:0.996078;stroke:none;stroke-width:29.9177;stroke-linecap:round;stroke-miterlimit:4.4;stroke-dashoffset:49.1339;stroke-opacity:0.921053;paint-order:markers fill stroke"
+       x="-19.017279"
+       y="258.28333"
+       id="text2424"><tspan
+         sodipodi:role="line"
+         id="tspan2422"
+         style="fill:#2c31ed;fill-opacity:0.996078;stroke:none;stroke-width:29.9177"
+         x="-19.017279"
+         y="258.28333">S</tspan></text>
+    <circle
+       style="fill:#ff3030;fill-opacity:0.92156863;stroke:none;stroke-width:4;stroke-linecap:round;stroke-miterlimit:4.4;stroke-dasharray:none;stroke-dashoffset:49.1339;stroke-opacity:0.921053;paint-order:markers fill stroke"
+       id="circle2426"
+       cx="-124.65807"
+       cy="19.570423"
+       r="42.543606"
+       inkscape:export-filename="NorthInv.png"
+       inkscape:export-xdpi="152.84082"
+       inkscape:export-ydpi="152.84082" />
+    <text
+       xml:space="preserve"
+       style="font-size:56.5373px;line-height:0;font-family:'LEMON MILK';-inkscape-font-specification:'LEMON MILK';text-align:center;text-anchor:middle;fill:#0f0000;fill-opacity:0.94509804;stroke:none;stroke-width:29.9177;stroke-linecap:round;stroke-miterlimit:4.4;stroke-dashoffset:49.1339;stroke-opacity:0.921053;paint-order:markers fill stroke"
+       x="-124.63026"
+       y="40.592731"
+       id="text2430"><tspan
+         sodipodi:role="line"
+         id="tspan2428"
+         style="fill:#0f0000;fill-opacity:0.94509804;stroke:none;stroke-width:29.9177"
+         x="-124.63026"
+         y="40.592731">N</tspan></text>
+    <circle
+       style="fill:#2c31ed;fill-opacity:0.92156863;stroke:none;stroke-width:4;stroke-linecap:round;stroke-miterlimit:4.4;stroke-dasharray:none;stroke-dashoffset:49.1339;stroke-opacity:0.92;paint-order:markers fill stroke"
+       id="circle2432"
+       cx="-21.779894"
+       cy="19.570423"
+       r="42.543606"
+       inkscape:export-filename="SouthInv.png"
+       inkscape:export-xdpi="152.84082"
+       inkscape:export-ydpi="152.84082" />
+    <text
+       xml:space="preserve"
+       style="font-size:56.5373px;line-height:0;font-family:'LEMON MILK';-inkscape-font-specification:'LEMON MILK';text-align:center;text-anchor:middle;fill:#00010f;fill-opacity:0.94509804;stroke:none;stroke-width:29.9177;stroke-linecap:round;stroke-miterlimit:4.4;stroke-dashoffset:49.1339;stroke-opacity:0.921053;paint-order:markers fill stroke"
+       x="-21.752085"
+       y="40.592731"
+       id="text2436"><tspan
+         sodipodi:role="line"
+         id="tspan2434"
+         style="fill:#00010f;fill-opacity:0.94509804;stroke:none;stroke-width:29.9177"
+         x="-21.752085"
+         y="40.592731">S</tspan></text>
+    <circle
+       style="fill:#ff3030;fill-opacity:0.921569;stroke:none;stroke-width:4;stroke-linecap:round;stroke-miterlimit:4.4;stroke-dasharray:none;stroke-dashoffset:49.1339;stroke-opacity:0.921053;paint-order:markers fill stroke"
+       id="circle2438"
+       cx="-122.47023"
+       cy="-110.60637"
+       r="42.543606"
+       inkscape:export-filename="NorthInv.png"
+       inkscape:export-xdpi="152.84082"
+       inkscape:export-ydpi="152.84082" />
+    <circle
+       style="fill:#2c31ed;fill-opacity:0.921569;stroke:none;stroke-width:4;stroke-linecap:round;stroke-miterlimit:4.4;stroke-dasharray:none;stroke-dashoffset:49.1339;stroke-opacity:0.92;paint-order:markers fill stroke"
+       id="circle2444"
+       cx="-19.592049"
+       cy="-110.60637"
+       r="42.543606"
+       inkscape:export-filename="SouthInv.png"
+       inkscape:export-xdpi="152.84082"
+       inkscape:export-ydpi="152.84082" />
+    <circle
+       style="fill:#ededed;fill-opacity:0.92156899;stroke:none;stroke-width:4;stroke-linecap:round;stroke-miterlimit:4.4;stroke-dasharray:none;stroke-dashoffset:49.1339;stroke-opacity:0.92;paint-order:markers fill stroke"
+       id="circle5218"
+       cx="-19.592049"
+       cy="-110.60637"
+       r="42.543606"
+       inkscape:export-filename="SouthLockInv.png"
+       inkscape:export-xdpi="152.84082"
+       inkscape:export-ydpi="152.84082"
+       mask="url(#mask5222)" />
+    <circle
+       style="fill:#ffffff;fill-opacity:0.92156899;stroke:none;stroke-width:4;stroke-linecap:round;stroke-miterlimit:4.4;stroke-dasharray:none;stroke-dashoffset:49.1339;stroke-opacity:0.921053;paint-order:markers fill stroke"
+       id="circle5216"
+       cx="-122.47023"
+       cy="-110.60637"
+       r="42.543606"
+       inkscape:export-filename="NorthLockInv.png"
+       inkscape:export-xdpi="152.84082"
+       inkscape:export-ydpi="152.84082"
+       mask="url(#mask5228)" />
+    <text
+       xml:space="preserve"
+       style="font-size:56.5373px;line-height:0;font-family:'LEMON MILK';-inkscape-font-specification:'LEMON MILK';text-align:center;text-anchor:middle;fill:#0f0000;fill-opacity:0.945098;stroke:none;stroke-width:29.9177;stroke-linecap:round;stroke-miterlimit:4.4;stroke-dashoffset:49.1339;stroke-opacity:0.921053;paint-order:markers fill stroke"
+       x="-122.44241"
+       y="-89.584061"
+       id="text2442"><tspan
+         sodipodi:role="line"
+         id="tspan2440"
+         style="fill:#0f0000;fill-opacity:0.945098;stroke:none;stroke-width:29.9177"
+         x="-122.44241"
+         y="-89.584061">N</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:56.5373px;line-height:0;font-family:'LEMON MILK';-inkscape-font-specification:'LEMON MILK';text-align:center;text-anchor:middle;fill:#00010f;fill-opacity:0.945098;stroke:none;stroke-width:29.9177;stroke-linecap:round;stroke-miterlimit:4.4;stroke-dashoffset:49.1339;stroke-opacity:0.921053;paint-order:markers fill stroke"
+       x="-19.56424"
+       y="-89.584061"
+       id="text2448"><tspan
+         sodipodi:role="line"
+         id="tspan2446"
+         style="fill:#00010f;fill-opacity:0.945098;stroke:none;stroke-width:29.9177"
+         x="-19.56424"
+         y="-89.584061">S</tspan></text>
+    <circle
+       style="fill:#ededed;fill-opacity:0.921569;stroke:none;stroke-width:4;stroke-linecap:round;stroke-miterlimit:4.4;stroke-dasharray:none;stroke-dashoffset:49.1339;stroke-opacity:0.92;paint-order:markers fill stroke"
+       id="circle5236"
+       cx="-19.592049"
+       cy="-110.60637"
+       r="42.543606"
+       inkscape:export-filename="SouthLockInv.png"
+       inkscape:export-xdpi="152.84082"
+       inkscape:export-ydpi="152.84082"
+       mask="url(#mask5222)"
+       transform="translate(2.2032294,245.61074)" />
+    <circle
+       style="fill:#ffffff;fill-opacity:0.921569;stroke:none;stroke-width:4;stroke-linecap:round;stroke-miterlimit:4.4;stroke-dasharray:none;stroke-dashoffset:49.1339;stroke-opacity:0.921053;paint-order:markers fill stroke"
+       id="circle5238"
+       cx="-122.47023"
+       cy="-110.60637"
+       r="42.543606"
+       inkscape:export-filename="NorthLockInv.png"
+       inkscape:export-xdpi="152.84082"
+       inkscape:export-ydpi="152.84082"
+       mask="url(#mask5228)"
+       transform="translate(2.2032294,245.61074)" />
+    <rect
+       style="opacity:1;fill:url(#linearGradient5372);fill-opacity:1;stroke:#ff2525;stroke-width:4;stroke-linecap:round;stroke-miterlimit:4.4;stroke-dasharray:none;stroke-dashoffset:49.1339;stroke-opacity:0.92;paint-order:markers fill stroke"
+       id="rect5333"
+       width="101.33114"
+       height="101.33114"
+       x="-466.43262"
+       y="-28.233486"
+       ry="13.923363"
+       inkscape:export-filename="playerNorth.png"
+       inkscape:export-xdpi="246.93173"
+       inkscape:export-ydpi="246.93173" />
+    <text
+       xml:space="preserve"
+       style="font-size:88.3536px;line-height:0;font-family:'LEMON MILK';-inkscape-font-specification:'LEMON MILK';text-align:center;text-anchor:middle;fill:#ed2c2c;fill-opacity:0.996078;stroke:none;stroke-width:46.7539;stroke-linecap:round;stroke-miterlimit:4.4;stroke-dashoffset:49.1339;stroke-opacity:0.921053;paint-order:markers fill stroke"
+       x="-415.57507"
+       y="56.081249"
+       id="text5341"><tspan
+         sodipodi:role="line"
+         id="tspan5339"
+         style="fill:#ed2c2c;fill-opacity:0.996078;stroke:none;stroke-width:46.7539"
+         x="-415.57507"
+         y="56.081249">N</tspan></text>
+    <rect
+       style="opacity:1;fill:url(#linearGradient5380);fill-opacity:1;stroke:#2527ff;stroke-width:4;stroke-linecap:round;stroke-miterlimit:4.4;stroke-dasharray:none;stroke-dashoffset:49.1339;stroke-opacity:0.92000002;paint-order:markers fill stroke"
+       id="rect5374"
+       width="101.33114"
+       height="101.33114"
+       x="-466.43262"
+       y="111.77366"
+       ry="13.923363"
+       inkscape:export-filename="playerSouth.png"
+       inkscape:export-xdpi="246.93173"
+       inkscape:export-ydpi="246.93173" />
+    <text
+       xml:space="preserve"
+       style="font-size:88.3536px;line-height:0;font-family:'LEMON MILK';-inkscape-font-specification:'LEMON MILK';text-align:center;text-anchor:middle;fill:#2c30ed;fill-opacity:0.99607801;stroke:none;stroke-width:46.7539;stroke-linecap:round;stroke-miterlimit:4.4;stroke-dashoffset:49.1339;stroke-opacity:0.921053;paint-order:markers fill stroke"
+       x="-415.57507"
+       y="196.08839"
+       id="text5378"><tspan
+         sodipodi:role="line"
+         id="tspan5376"
+         style="fill:#2c30ed;fill-opacity:0.99607801;stroke:none;stroke-width:46.7539"
+         x="-415.57507"
+         y="196.08839">S</tspan></text>
+    <path
+       style="opacity:1;fill:none;fill-opacity:0.996078;stroke:#ffffff;stroke-width:10;stroke-linecap:round;stroke-miterlimit:4.4;stroke-dasharray:none;stroke-dashoffset:49.1339;stroke-opacity:0.99168402;paint-order:markers fill stroke"
+       id="path5547"
+       sodipodi:type="arc"
+       sodipodi:cx="-559.25507"
+       sodipodi:cy="-121.44267"
+       sodipodi:rx="42.543606"
+       sodipodi:ry="42.543606"
+       sodipodi:start="0.58549006"
+       sodipodi:end="5.6117944"
+       sodipodi:arc-type="arc"
+       d="m -523.79746,-97.932741 a 42.543606,42.543606 0 0 1 -46.85738,17.477915 42.543606,42.543606 0 0 1 -31.1046,-39.161144 42.543606,42.543606 0 0 1 27.63007,-41.68537 42.543606,42.543606 0 0 1 48.18413,13.39333"
+       sodipodi:open="true"
+       inkscape:export-filename="retry.png"
+       inkscape:export-xdpi="147.64186"
+       inkscape:export-ydpi="147.64186" />
+    <path
+       style="opacity:1;fill:none;fill-opacity:0.996078;stroke:#ffffff;stroke-width:10;stroke-linecap:round;stroke-miterlimit:4.4;stroke-dasharray:none;stroke-dashoffset:49.1339;stroke-opacity:0.99168402;paint-order:markers fill stroke;stroke-linejoin:round"
+       d="m -546.96133,-143.85083 h 23.24587 v -24.0663"
+       id="path5655" />
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:0.99607801;stroke:#e1e1e1;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.4;stroke-dasharray:none;stroke-dashoffset:49.1339;stroke-opacity:0.99168402;paint-order:markers fill stroke"
+       id="rect5709"
+       width="45.397789"
+       height="45.397789"
+       x="-257.49228"
+       y="316.42746"
+       ry="1.9338084"
+       inkscape:export-filename="stopSim.png"
+       inkscape:export-xdpi="234.75308"
+       inkscape:export-ydpi="234.75308" />
+    <path
+       sodipodi:type="star"
+       style="opacity:1;fill:#ffffff;fill-opacity:0.996078;stroke:#e1e1e1;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.4;stroke-dasharray:none;stroke-dashoffset:49.1339;stroke-opacity:0.991684;paint-order:markers fill stroke"
+       id="path5815"
+       inkscape:flatsided="true"
+       sodipodi:sides="3"
+       sodipodi:cx="-336.48126"
+       sodipodi:cy="314.24255"
+       sodipodi:r1="28.25425"
+       sodipodi:r2="7.9132385"
+       sodipodi:arg1="1.0607759"
+       sodipodi:arg2="2.1079735"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m -322.68768,338.90101 -42.04523,-25.04209 42.70971,-23.89119 z"
+       inkscape:transform-center-x="0.35969754"
+       inkscape:transform-center-y="1.2577305"
+       transform="rotate(179.35884,-328.57994,327.04333)" />
+    <rect
+       style="opacity:1;fill:#020015;fill-opacity:0.99607801;stroke:#0d00f2;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.4;stroke-dasharray:none;stroke-dashoffset:49.1339;stroke-opacity:0.86486489;paint-order:markers fill stroke"
+       id="rect5819"
+       width="45.397789"
+       height="45.397789"
+       x="-257.49228"
+       y="399.96762"
+       ry="1.9338084"
+       inkscape:export-filename="stopSimBlue.png"
+       inkscape:export-xdpi="234.75308"
+       inkscape:export-ydpi="234.75308" />
+    <path
+       sodipodi:type="star"
+       style="opacity:1;fill:#020015;fill-opacity:0.99607801;stroke:#0d00f2;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.4;stroke-dasharray:none;stroke-dashoffset:49.1339;stroke-opacity:0.86486489;paint-order:markers fill stroke"
+       id="path5821"
+       inkscape:flatsided="true"
+       sodipodi:sides="3"
+       sodipodi:cx="-336.48126"
+       sodipodi:cy="314.24255"
+       sodipodi:r1="28.25425"
+       sodipodi:r2="7.9132385"
+       sodipodi:arg1="1.0607759"
+       sodipodi:arg2="2.1079735"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m -322.68768,338.90101 -42.04523,-25.04209 42.70971,-23.89119 z"
+       inkscape:transform-center-x="0.35969754"
+       inkscape:transform-center-y="1.2577305"
+       transform="rotate(179.35884,-328.81365,368.81342)"
+       inkscape:export-filename="startSimBlue.png"
+       inkscape:export-xdpi="234.75308"
+       inkscape:export-ydpi="234.75308" />
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:0.996078;stroke:#e1e1e1;stroke-width:6.50294;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.4;stroke-dasharray:none;stroke-dashoffset:49.1339;stroke-opacity:0.991684;paint-order:markers fill stroke"
+       id="rect5936"
+       width="17.824831"
+       height="48.894852"
+       x="-350.51617"
+       y="519.66174"
+       ry="2.0827725"
+       inkscape:export-filename="pauseSim.png"
+       inkscape:export-xdpi="233.37993"
+       inkscape:export-ydpi="233.37993" />
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:0.996078;stroke:#e1e1e1;stroke-width:6.50294;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.4;stroke-dasharray:none;stroke-dashoffset:49.1339;stroke-opacity:0.991684;paint-order:markers fill stroke"
+       id="rect5938"
+       width="17.824831"
+       height="48.894852"
+       x="-319.12021"
+       y="519.66174"
+       ry="2.0827727"
+       inkscape:export-filename="stopSim.png"
+       inkscape:export-xdpi="234.75308"
+       inkscape:export-ydpi="234.75308" />
+    <path
+       sodipodi:type="star"
+       style="opacity:1;fill:#ffffff;fill-opacity:0.996078;stroke:#e1e1e1;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.4;stroke-dasharray:none;stroke-dashoffset:49.1339;stroke-opacity:0.991684;paint-order:markers fill stroke"
+       id="path5942"
+       inkscape:flatsided="true"
+       sodipodi:sides="3"
+       sodipodi:cx="-336.48126"
+       sodipodi:cy="314.24255"
+       sodipodi:r1="28.25425"
+       sodipodi:r2="7.9132385"
+       sodipodi:arg1="1.0607759"
+       sodipodi:arg2="2.1079735"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m -322.68768,338.90101 -42.04523,-25.04209 42.70971,-23.89119 z"
+       inkscape:transform-center-x="0.35969754"
+       inkscape:transform-center-y="1.2577305"
+       transform="rotate(179.35884,-373.95441,363.71049)"
+       inkscape:export-filename="step.png"
+       inkscape:export-xdpi="169.91895"
+       inkscape:export-ydpi="169.91895" />
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:0.996078;stroke:#e1e1e1;stroke-width:6.08442;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.4;stroke-dasharray:none;stroke-dashoffset:49.1339;stroke-opacity:0.991684;paint-order:markers fill stroke"
+       id="rect5944"
+       width="15.471867"
+       height="49.31337"
+       x="-451.11111"
+       y="388.76254"
+       ry="2.1006005"
+       inkscape:export-filename="stopSim.png"
+       inkscape:export-xdpi="234.75308"
+       inkscape:export-ydpi="234.75308" />
+  </g>
+</svg>
