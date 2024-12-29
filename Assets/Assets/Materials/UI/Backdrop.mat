@@ -11,10 +11,10 @@ Material:
   m_Shader: {fileID: 4800000, guid: 54f59133682035e4d98a7215d07a1493, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
+  m_ValidKeywords: []
+  m_InvalidKeywords:
   - IS_BLUR_ALPHA_MASKED
   - IS_SPRITE_VISIBLE
-  m_InvalidKeywords:
   - _EMISSION
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
@@ -64,6 +64,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _BlurRadius: 3.1
     - _BumpScale: 1
     - _ColorMask: 15
     - _Cutoff: 0.5
@@ -93,6 +94,6 @@ Material:
     m_Colors:
     - _Color: {r: 0, g: 0, b: 1, a: 0.69803923}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _OverlayColor: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 1}
+    - _OverlayColor: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

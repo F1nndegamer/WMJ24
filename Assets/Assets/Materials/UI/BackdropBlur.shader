@@ -1,139 +1,65 @@
-Shader "Custom/UIBlur"
+Shader "Custom/UIBlur_URP"
 {
-    //Imported Shader
     Properties
     {
-        [Toggle(IS_BLUR_ALPHA_MASKED)] _IsAlphaMasked("Image Alpha Masks Blur", Float) = 1
-        [Toggle(IS_SPRITE_VISIBLE)] _IsSpriteVisible("Show Image", Float) = 1
-
-        // Internally enforced by MAX_RADIUS
-        _Radius("Blur Radius", Range(0, 64)) = 1
-        _OverlayColor("Blurred Overlay/Opacity", Color) = (0.5, 0.5, 0.5, 1)
-
-        // see Stencil in UI/Default
-        [HideInInspector][PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
-        [HideInInspector]_StencilComp ("Stencil Comparison", Float) = 8
-        [HideInInspector]_Stencil ("Stencil ID", Float) = 0.0
-        [HideInInspector]_StencilOp ("Stencil Operation", Float) = 0
-        [HideInInspector]_StencilWriteMask ("Stencil Write Mask", Float) = 255
-        [HideInInspector]_StencilReadMask ("Stencil Read Mask", Float) = 255
-        [HideInInspector]_ColorMask ("Color Mask", Float) = 15
-        [HideInInspector]_UseUIAlphaClip ("Use Alpha Clip", Float) = 0
+        _MainTex ("Base Texture", 2D) = "white" {}
+        _BlurRadius ("Blur Radius", Range(0, 64)) = 4
+        _OverlayColor ("Overlay Color", Color) = (0.5, 0.5, 0.5, 1)
     }
 
-    Category
+    SubShader
     {
-        Tags
+        Tags { "RenderPipeline" = "UniversalRenderPipeline" "Queue" = "Transparent" }
+        Pass
         {
-            "Queue" = "Transparent"
-            "IgnoreProjector" = "True"
-            "RenderType" = "Transparent"
-            "PreviewType" = "Plane"
-            "CanUseSpriteAtlas" = "True"
-        }
+            Name "BlurPass"
+            HLSLPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
-        Stencil
-        {
-            Ref [_Stencil]
-            Comp [_StencilComp]
-            Pass [_StencilOp]
-            ReadMask [_StencilReadMask]
-            WriteMask [_StencilWriteMask]
-        }
+            sampler2D _MainTex;
+            float4 _MainTex_ST;
+            float _BlurRadius;
 
-        Cull Off
-        Lighting Off
-        ZWrite Off
-        ZTest [unity_GUIZTestMode]
-        Blend SrcAlpha OneMinusSrcAlpha
-        ColorMask [_ColorMask]
-
-        SubShader
-        {
-
-            GrabPass
+            struct Attributes
             {
-                Tags
-                { 
-                    "LightMode" = "Always"
-                    "Queue" = "Background"  
-                }
+                float4 positionOS : POSITION;
+                float2 uv : TEXCOORD0;
+            };
+
+            struct Varyings
+            {
+                float4 positionCS : SV_POSITION;
+                float2 uv : TEXCOORD0;
+            };
+
+            Varyings vert(Attributes IN)
+            {
+                Varyings OUT;
+                OUT.positionCS = TransformObjectToHClip(IN.positionOS);
+                OUT.uv = TRANSFORM_TEX(IN.uv, _MainTex);
+                return OUT;
             }
 
-            Pass
+            float4 frag(Varyings IN) : SV_Target
             {
-                Name "UIBlur_Y"
-                Tags{ "LightMode" = "Always" }
+                float2 texelSize = float2(1.0 / _ScreenParams.x, 1.0 / _ScreenParams.y);
+                float4 color = float4(0, 0, 0, 0);
 
-            CGPROGRAM
-                #pragma vertex vert
-                #pragma fragment frag
-                #pragma fragmentoption ARB_precision_hint_fastest
-                #pragma multi_compile __ IS_BLUR_ALPHA_MASKED
-                #pragma multi_compile __ IS_SPRITE_VISIBLE
-                #pragma multi_compile __ UNITY_UI_ALPHACLIP
-
-                #include "UIBlur_Shared.cginc"
-
-                sampler2D _GrabTexture;
-                float4 _GrabTexture_TexelSize;
-
-                half4 frag(v2f IN) : COLOR
+                // Apply a simple Gaussian blur
+                for (int x = -2; x <= 2; x++)
                 {
-                    half4 pixel_raw = tex2D(_MainTex, IN.uvmain);
-                    return GetBlurInDir(IN, pixel_raw, _GrabTexture, _GrabTexture_TexelSize, 0, 1);
+                    for (int y = -2; y <= 2; y++)
+                    {
+                        float weight = 1.0 - length(float2(x, y)) / _BlurRadius;
+                        color += tex2D(_MainTex, IN.uv + texelSize * float2(x, y)) * weight;
+                    }
                 }
-            ENDCG
+
+                return color / 25.0; // Normalize the result
             }
-
-            
-            GrabPass
-            {
-                Tags
-                { 
-                    "LightMode" = "Always"
-                    "Queue" = "Background"  
-                }
-            }
-            Pass
-            {
-                Name "UIBlur_X"
-                Tags{ "LightMode" = "Always" }
-
-
-            CGPROGRAM
-                #pragma vertex vert
-                #pragma fragment frag
-                #pragma fragmentoption ARB_precision_hint_fastest
-                #pragma multi_compile __ IS_BLUR_ALPHA_MASKED
-                #pragma multi_compile __ IS_SPRITE_VISIBLE
-                #pragma multi_compile __ UNITY_UI_ALPHACLIP
-
-                #include "UIBlur_Shared.cginc"
-
-
-                sampler2D _GrabTexture;
-                float4 _GrabTexture_TexelSize;
-
-                half4 frag(v2f IN) : COLOR
-                {
-                    half4 pixel_raw = tex2D(_MainTex, IN.uvmain);
-
-#if IS_SPRITE_VISIBLE
-                    return layerBlend(
-                            // Layer 0 : The blurred background
-                            GetBlurInDir(IN, pixel_raw, _GrabTexture, _GrabTexture_TexelSize, 1, 0), 
-                            // Layer 1 : The sprite itself
-                            pixel_raw * IN.color
-                        );
-#else
-                    return GetBlurInDir(IN, pixel_raw, _GrabTexture, _GrabTexture_TexelSize, 1, 0);
-#endif
-                }
-            ENDCG
-            }
-
+            ENDHLSL
         }
     }
-    Fallback "UI/Default"
 }
