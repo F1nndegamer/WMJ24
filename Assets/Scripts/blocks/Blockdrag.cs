@@ -30,7 +30,7 @@ public class BlockDrag : MonoBehaviour
         }
         else
         {
-            canMove = false ;
+            canMove = true ;
         }
 
         if (isDragging && canMove)
