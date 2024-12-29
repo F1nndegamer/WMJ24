@@ -105,6 +105,7 @@ MonoBehaviour:
   isColliding: 0
   canMove: 0
   IsPlaced: 0
+  PlaceSpeed: 15
 --- !u!61 &6222657028248589904
 BoxCollider2D:
   m_ObjectHideFlags: 0
