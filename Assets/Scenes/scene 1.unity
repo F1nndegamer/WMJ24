@@ -152,9 +152,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 197498594}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -859.30023, y: 158}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 100.69977, y: 158}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &192920214
@@ -743,10 +743,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 197498594}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -859.43005, y: 2}
-  m_SizeDelta: {x: 201.14, y: 1002.23}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 100.56995, y: 2}
+  m_SizeDelta: {x: 201.14001, y: 1002.23}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &845377961
 BoxCollider2D:
@@ -1819,11 +1819,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 988ff4f5470194b4a94779bc8d9c3354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attractionSpeed: 5
+  attractionSpeed: 10
   repulsionForce: 10
-  interactionRange: 5
+  interactionRange: 10
   minimumDistance: 1
-  attractors: []
+  dragCoefficient: 0.7
+  maxVelocity: 50
 --- !u!61 &1512224762
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1944,9 +1945,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 197498594}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -859.30023, y: -180}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 100.69977, y: -180}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &1721620457
@@ -2309,9 +2310,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 197498594}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -859.30023, y: 286}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 100.69977, y: 286}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &1866352500
@@ -2490,7 +2491,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2556,9 +2557,9 @@ RectTransform:
   - {fileID: 915304057}
   m_Father: {fileID: 197498594}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -865, y: -291}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 95, y: -291}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1896780943
@@ -2957,9 +2958,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 197498594}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -859.30023, y: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 100.69977, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &2109281984

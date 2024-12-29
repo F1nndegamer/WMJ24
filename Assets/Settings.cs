@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,48 +9,47 @@ public class Settings : MonoBehaviour
     public bool fullScreen = false, lightMode = false;
     [Range(0, 1)]
     public float volume = 1f;
-    
+
     [SerializeField] private GameObject invertObj;
-    void Start()
+    private void Start()
     {
-        if (PlayerPrefs.GetString("first") != "true")
-        {
-            Load();
-        }else{
-            PlayerPrefs.SetString("first", "true");
-        }
+        Load();
         InvokeRepeating("Check", 0.1f, 3);
     }
     void Update()
     {
 
     }
-    void Check(){
+    void Check()
+    {
         fullScreen = Screen.fullScreen;
-        if(fullScreen != fullTogg.isOn) fullTogg.isOn = fullScreen;
+        if (fullScreen != fullTogg.isOn) fullTogg.isOn = fullScreen;
         Save();
     }
     void Load()
     {
-        fullTogg.isOn = fullScreen = PlayerPrefs.GetInt("full") == 1;
-        lightTogg.isOn = lightMode = PlayerPrefs.GetInt("light") == 1;
-        volumeSlider.value = volume = PlayerPrefs.GetFloat("volume");
+        Screen.fullScreen = fullTogg.isOn = fullScreen = PlayerPrefs.GetInt("full") == 1;
+        invertObj.SetActive(lightTogg.isOn = lightMode = PlayerPrefs.GetInt("light") == 1);
+        AudioListener.volume = volumeSlider.value = volume = PlayerPrefs.GetFloat("volume");
     }
     void Save()
     {
-        PlayerPrefs.SetInt("full", fullTogg ? 1 : 0);
-        PlayerPrefs.SetInt("light", lightTogg ? 1 : 0);
+        PlayerPrefs.SetInt("full", fullTogg.isOn ? 1 : 0);
+        PlayerPrefs.SetInt("light", lightTogg.isOn ? 1 : 0);
         PlayerPrefs.SetFloat("volume", volumeSlider.value);
     }
-    public void SetVol(float vol){
+    public void SetVol(float vol)
+    {
         AudioListener.volume = vol;
         volume = vol;
     }
-    public void SetFull(bool val){
+    public void SetFull(bool val)
+    {
         Screen.fullScreen = val;
         fullScreen = val;
     }
-    public void SetLight(bool val){
+    public void SetLight(bool val)
+    {
         lightMode = val;
         invertObj.SetActive(val);
     }

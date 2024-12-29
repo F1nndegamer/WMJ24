@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BlockDrag : MonoBehaviour
@@ -9,6 +10,11 @@ public class BlockDrag : MonoBehaviour
     private bool willdestroy;
     public bool canMove;
     public bool IsPlaced;
+    [SerializeField] float PlaceSpeed = 0.9f;
+    private Vector3 targetPos;
+    void Start(){
+        targetPos = transform.position;
+    }
     private void OnMouseDown()
     {
             zCoordinate = Camera.main.WorldToScreenPoint(transform.position).z;
@@ -21,11 +27,18 @@ public class BlockDrag : MonoBehaviour
     {
         if (isDragging && canMove)
         {
-            transform.position = GetMouseWorldPosition() + offset;
+            targetPos = GetMouseWorldPosition() + offset;
+            transform.position = VectorFixedLerp(transform.position, targetPos, PlaceSpeed);
             IsPlaced = false;
         }
     }
-
+    float FixedLerp(float a, float b, float decay){
+        a = b + (a - b) * Mathf.Exp(-decay * Time.deltaTime);
+        return a;
+    }
+    Vector3 VectorFixedLerp(Vector3 a, Vector3 b, float decay){
+        return new Vector3(FixedLerp(a.x, b.x, decay), FixedLerp(a.y, b.y, decay), FixedLerp(a.z, b.z, decay));
+    }
     private void OnMouseUp()
     {
         isDragging = false;
