@@ -21,14 +21,15 @@ public class PlayerDeath : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Die();
+            StartCoroutine(Die());
         }
     }
 
-    private void Die()
+    IEnumerator Die()
     {
-            deathScreen.SetActive(true);
+        deathScreen.SetActive(true);
         PlayerScript.Instance.SimilationStarted = false;
+        yield return new WaitForSeconds(2);
         Time.timeScale = 0f;
     }
 
