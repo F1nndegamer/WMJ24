@@ -1,0 +1,74 @@
+{
+    "name": "Input",
+    "maps": [
+        {
+            "name": "Default",
+            "id": "4f7cacfe-b7ae-4e17-9343-93db98e999e2",
+            "actions": [
+                {
+                    "name": "Fullscreen",
+                    "type": "Button",
+                    "id": "ee1707cf-7130-463a-aa09-fd29ec38068a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Mouse",
+                    "type": "Button",
+                    "id": "b77bee69-261e-45b6-a49e-692eea813c2b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Flip",
+                    "type": "Button",
+                    "id": "cfbc0d7d-b84b-4360-9e47-25aa8861f53d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ed02a283-8ccb-4bd9-98f9-0165a1998e03",
+                    "path": "<Keyboard>/f11",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fullscreen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aa6fdf93-8956-476d-8273-ab7d6544cb43",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Mouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ab1b57aa-900a-4690-9399-f85826a94942",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Flip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

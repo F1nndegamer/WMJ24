@@ -28,7 +28,7 @@ public class PlayerDeath : MonoBehaviour
     private void Die()
     {
             deathScreen.SetActive(true);
-        playerscript.Instance.SimilationStarted = false;
+        PlayerScript.Instance.SimilationStarted = false;
         Time.timeScale = 0f;
     }
 

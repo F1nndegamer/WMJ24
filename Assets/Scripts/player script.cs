@@ -1,5 +1,5 @@
 using UnityEngine;
-public class playerscript : MonoBehaviour
+public class PlayerScript : MonoBehaviour
 {
     public float attractionSpeed = 8f;
     public float repulsionForce = 5f;
@@ -13,10 +13,12 @@ public class playerscript : MonoBehaviour
     public GameObject[] attractors;
     public GameObject[] repellers;
     [SerializeField] private SpriteRenderer north;
+    public InputActions inputActions;
+    public static InputActions.DefaultActions input;
 
     public bool SimilationStarted;
     public bool RedPole;
-    public static playerscript Instance;
+    public static PlayerScript Instance;
     private void Update()
     {
         if (SimilationStarted)
@@ -25,6 +27,17 @@ public class playerscript : MonoBehaviour
             ApplyMovement();
         }
         north.color = new Color(1, 1, 1, Mathf.Lerp(north.color.a, RedPole ? 0 : 1, 0.3f));
+    }
+    void Awake(){
+        inputActions = new InputActions();
+        input = inputActions.Default;
+        input.Flip.performed += ctx => ChangePole();
+    }
+    private void OnEnable() {
+        input.Enable();
+    }
+    private void OnDisable() {
+        input.Disable();
     }
     private void Start()
     {

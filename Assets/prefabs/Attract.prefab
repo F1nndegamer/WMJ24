@@ -102,10 +102,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b83dfde45b209446bb4ce91dc28d9bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offset: {x: 0, y: 0, z: 0}
   isColliding: 0
+  isDragging: 1
   canMove: 1
   SimStarted: 0
   PlaceSpeed: 15
+  targetScale: 0.1
 --- !u!50 &2747567378883553304
 Rigidbody2D:
   serializedVersion: 5
@@ -168,4 +171,4 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 5.12
+  m_Radius: 10.24

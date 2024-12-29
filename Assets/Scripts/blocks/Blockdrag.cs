@@ -1,30 +1,35 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class BlockDrag : MonoBehaviour
 {
-    private Vector3 offset;
+    public Vector3 offset;
     private float zCoordinate;
     public bool isColliding;
-    private bool isDragging;
+    public bool isDragging;
     private bool willdestroy;
     public bool canMove;
     public bool SimStarted;
     [SerializeField] float PlaceSpeed = 0.9f;
     private Vector3 targetPos;
-    void Start(){
+    public float targetScale;
+    void Start()
+    {
         targetPos = transform.position;
+        StartCoroutine(Summoned());
+        PlayerScript.input.Mouse.canceled += ctx => OnMouseUp();
     }
     private void OnMouseDown()
     {
-            zCoordinate = Camera.main.WorldToScreenPoint(transform.position).z;
-            offset = transform.position - GetMouseWorldPosition();
-            isDragging = true;
-        
+        zCoordinate = Camera.main.WorldToScreenPoint(transform.position).z;
+        offset = transform.position - GetMouseWorldPosition();
+        isDragging = true;
+
     }
     private void Update()
     {
-        if(playerscript.Instance.SimilationStarted)
+        if (PlayerScript.Instance.SimilationStarted)
         {
             canMove = false;
         }
@@ -39,11 +44,22 @@ public class BlockDrag : MonoBehaviour
             transform.position = VectorFixedLerp(transform.position, targetPos, PlaceSpeed);
         }
     }
-    float FixedLerp(float a, float b, float decay){
+    private IEnumerator Summoned()
+    {
+        while (transform.localScale.x > targetScale)
+        {
+            transform.localScale -= Vector3.one * 2 * Time.deltaTime;
+            yield return null;
+        }
+        transform.localScale = Vector3.one * targetScale;
+    }
+    float FixedLerp(float a, float b, float decay)
+    {
         a = b + (a - b) * Mathf.Exp(-decay * Time.deltaTime);
         return a;
     }
-    Vector3 VectorFixedLerp(Vector3 a, Vector3 b, float decay){
+    Vector3 VectorFixedLerp(Vector3 a, Vector3 b, float decay)
+    {
         return new Vector3(FixedLerp(a.x, b.x, decay), FixedLerp(a.y, b.y, decay), FixedLerp(a.z, b.z, decay));
     }
     private void OnMouseUp()
