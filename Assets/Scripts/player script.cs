@@ -12,6 +12,7 @@ public class playerscript : MonoBehaviour
     private Vector3 acceleration = Vector3.zero;
     public GameObject[] attractors;
     public GameObject[] repellers;
+    [SerializeField] private SpriteRenderer north;
 
     public bool SimilationStarted;
     public bool RedPole;
@@ -23,6 +24,7 @@ public class playerscript : MonoBehaviour
             AttractOrRepelObjects();
             ApplyMovement();
         }
+        north.color = new Color(1, 1, 1, Mathf.Lerp(north.color.a, RedPole ? 0 : 1, 0.5f));
     }
     private void Start()
     {
