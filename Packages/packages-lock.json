@@ -9,14 +9,6 @@
       },
       "hash": "6e0d82b1bdc6aac55fc4adfe8369240cf842519f"
     },
-    "com.unify.unified-universal-blur": {
-      "version": "file:F:/Docs/Unified-Universal-Blur-0.6.1/Unified-Universal-Blur-0.6.1",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {
-        "com.unity.render-pipelines.universal": "17.0.3"
-      }
-    },
     "com.unity.2d.animation": {
       "version": "10.1.4",
       "depth": 1,
