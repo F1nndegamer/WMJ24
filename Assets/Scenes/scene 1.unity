@@ -1819,11 +1819,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 988ff4f5470194b4a94779bc8d9c3354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attractionSpeed: 5
+  attractionSpeed: 10
   repulsionForce: 10
-  interactionRange: 5
+  interactionRange: 10
   minimumDistance: 1
-  attractors: []
+  dragCoefficient: 0.7
+  maxVelocity: 50
 --- !u!61 &1512224762
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2490,7 +2491,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

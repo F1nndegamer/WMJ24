@@ -6,10 +6,17 @@ public class playerscript : MonoBehaviour
     public float repulsionForce = 10f;
     public float interactionRange = 5f;
     public float minimumDistance = 1f;
-    public GameObject[] attractors;
+    public float dragCoefficient = 0.1f;
+    public float maxVelocity = 10f;
+
+    private Vector3 velocity = Vector3.zero;
+    private Vector3 acceleration = Vector3.zero;
+    private GameObject[] attractors;
+
     private void Update()
     {
         AttractOrRepelObjects();
+        ApplyMovement();
     }
 
     private void AttractOrRepelObjects()
@@ -74,10 +81,23 @@ public class playerscript : MonoBehaviour
                     }
                 }
             }
-
         }
-        Vector3 movement = (attractionDirection * attractionSpeed) + (repulsionDirection * repulsionForce);
-        transform.position += movement * Time.deltaTime;
+
+        Vector3 force = (attractionDirection * attractionSpeed) + (repulsionDirection * repulsionForce);
+        ApplyForce(force);
+    }
+
+    private void ApplyForce(Vector3 force)
+    {
+        acceleration = force;
+    }
+
+    private void ApplyMovement()
+    {
+        velocity += acceleration * Time.deltaTime;
+        velocity *= 1 - dragCoefficient * Time.deltaTime;
+        velocity = Vector3.ClampMagnitude(velocity, maxVelocity);
+        transform.position += velocity * Time.deltaTime;
     }
 
     private void OnDrawGizmos()
