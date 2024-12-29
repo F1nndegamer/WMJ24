@@ -8,6 +8,10 @@ public class Menu : MonoBehaviour
     [SerializeField] private CanvasGroup overlay;
     [SerializeField] private Image loadingImage;
     [SerializeField] private bool loadingSmth = false;
+    public static Menu Instance;
+    private void Awake(){
+        Instance = this;
+    }
 
     private void Start()
     {

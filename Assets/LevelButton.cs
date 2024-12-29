@@ -11,6 +11,7 @@ public class LevelButton : MonoBehaviour
     [SerializeField] TextMeshProUGUI levelText;
     [SerializeField] Image[] images;
     public Color[] colors = { Color.white, Color.white, Color.white };
+    public bool unlocked = false;
 
     void Start()
     {
@@ -19,6 +20,7 @@ public class LevelButton : MonoBehaviour
     }
     public void ButtonUpdate()
     {
+        GetComponent<Button>().interactable = unlocked;
         levelText.text = n.ToString();
         int i = 0;
         if (difficulty == Difficulty.Medium) { i = 1; } else if (difficulty == Difficulty.Hard) { i = 2; }
@@ -26,6 +28,7 @@ public class LevelButton : MonoBehaviour
         foreach (Image image in images)
         {
             image.color = imgColor;
+            levelText.color = imgColor;
         }
     }
     private IEnumerator ButtonIn()
@@ -36,5 +39,8 @@ public class LevelButton : MonoBehaviour
             yield return null;
         }
         transform.localScale = Vector3.one;
+    }
+    public void PlayLevel(){
+        Menu.Instance.loadLevel("Level" + n.ToString());
     }
 }
