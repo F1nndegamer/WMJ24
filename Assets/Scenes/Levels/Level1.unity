@@ -2307,6 +2307,7 @@ MonoBehaviour:
   maxVelocity: 6
   attractors: []
   repellers: []
+  north: {fileID: 95893250}
   SimilationStarted: 0
   RedPole: 1
 --- !u!61 &1512224762
