@@ -24,7 +24,6 @@ public class Settings : MonoBehaviour
     {
         fullScreen = Screen.fullScreen;
         if (fullScreen != fullTogg.isOn) fullTogg.isOn = fullScreen;
-        Debug.Log("Check()");
         Save();
     }
     void Load()
@@ -32,7 +31,6 @@ public class Settings : MonoBehaviour
         Screen.fullScreen = fullTogg.isOn = fullScreen = PlayerPrefs.GetInt("full") == 1;
         invertObj.SetActive(lightTogg.isOn = lightMode = PlayerPrefs.GetInt("light") == 1);
         AudioListener.volume = volumeSlider.value = volume = PlayerPrefs.GetFloat("volume");
-        Debug.Log("Loaded");
     }
     void Save()
     {
