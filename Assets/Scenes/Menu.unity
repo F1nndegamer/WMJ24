@@ -1117,7 +1117,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Magneto Ghetto
+  m_text: Please Suggest a Name
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6e4e413a5ebaaa34aaf2c70e120ab15a, type: 2}
   m_sharedMaterial: {fileID: -1831941642040796467, guid: 6e4e413a5ebaaa34aaf2c70e120ab15a, type: 2}
