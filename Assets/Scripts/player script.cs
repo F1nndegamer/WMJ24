@@ -10,11 +10,11 @@ public class playerscript : MonoBehaviour
 
     private Vector3 velocity = Vector3.zero;
     private Vector3 acceleration = Vector3.zero;
-    private GameObject[] attractors;
-    private GameObject[] repellers;
+    public GameObject[] attractors;
+    public GameObject[] repellers;
 
     public bool SimilationStarted;
-
+    public bool RedPole;
     public static playerscript Instance;
     private void Update()
     {
@@ -36,10 +36,29 @@ public class playerscript : MonoBehaviour
     {
         SimilationStarted = false;
     }
+    public void ChangePole()
+    {
+        if (RedPole)
+        {
+            RedPole = false;
+        }
+        else
+        {
+            RedPole = true;
+        }
+    }
     private void AttractOrRepelObjects()
     {
-        attractors = GameObject.FindGameObjectsWithTag("Attractor");
-        repellers = GameObject.FindGameObjectsWithTag("Repeller");
+        if(RedPole)
+        {
+            attractors = GameObject.FindGameObjectsWithTag("Attractor");
+            repellers = GameObject.FindGameObjectsWithTag("Repeller");
+        }
+        else
+        {
+            attractors = GameObject.FindGameObjectsWithTag("Repeller");
+            repellers = GameObject.FindGameObjectsWithTag("Attractor");
+        }
         Vector3 attractionDirection = Vector3.zero;
         Vector3 repulsionDirection = Vector3.zero;
 
@@ -93,8 +112,17 @@ public class playerscript : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        if (RedPole)
+        {
+            attractors = GameObject.FindGameObjectsWithTag("Attractor");
+            repellers = GameObject.FindGameObjectsWithTag("Repeller");
+        }
+        else
+        {
+            attractors = GameObject.FindGameObjectsWithTag("Repeller");
+            repellers = GameObject.FindGameObjectsWithTag("Attractor");
+        }
         Gizmos.color = Color.blue;
-        GameObject[] attractors = GameObject.FindGameObjectsWithTag("Attractor");
         foreach (GameObject attractor in attractors)
         {
             float distanceToAttractor = Vector3.Distance(transform.position, attractor.transform.position);
@@ -105,7 +133,6 @@ public class playerscript : MonoBehaviour
         }
 
         Gizmos.color = Color.red;
-        GameObject[] repellers = GameObject.FindGameObjectsWithTag("Repeller");
         foreach (GameObject repeller in repellers)
         {
             float distanceToRepeller = Vector3.Distance(transform.position, repeller.transform.position);
