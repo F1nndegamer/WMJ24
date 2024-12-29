@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UniversalBlurFeature
   m_EditorClassIdentifier: 
   m_Active: 1
-  iterations: 3
+  iterations: 4
   intensity: 1
   downsample: 2
   scale: 1
