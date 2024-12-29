@@ -10,10 +10,13 @@ public class InventoryDrag : MonoBehaviour
     public GameObject clone;
     private void OnMouseDown()
     {
-        clone = Instantiate(prefab, transform.position, transform.rotation); 
-        clone.transform.position = new Vector3(clone.transform.position.x, clone.transform.position.y, 1);
-        offset = transform.position - GetMouseWorldPosition();
-        isDragging = true;
+        if(!playerscript.Instance.SimilationStarted)
+            {
+            clone = Instantiate(prefab, transform.position, transform.rotation);
+            clone.transform.position = new Vector3(clone.transform.position.x, clone.transform.position.y, 1);
+            offset = transform.position - GetMouseWorldPosition();
+            isDragging = true;
+        }
 
     }
 
@@ -28,10 +31,11 @@ public class InventoryDrag : MonoBehaviour
     private void OnMouseUp()
     {
         isDragging = false;
-        InventoryDrag clonedrag = clone.GetComponent<InventoryDrag>();
-        Destroy(clonedrag);
-        BlockDrag blockDrag = clone.GetComponent<BlockDrag>();
-        blockDrag.IsPlaced = true;
+        if (clone != null)
+        {
+            InventoryDrag clonedrag = clone.GetComponent<InventoryDrag>();
+            Destroy(clonedrag);
+        }
     }
     Vector3 GetMouseWorldPosition()
     {

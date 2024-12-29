@@ -9,7 +9,7 @@ public class BlockDrag : MonoBehaviour
     private bool isDragging;
     private bool willdestroy;
     public bool canMove;
-    public bool IsPlaced;
+    public bool SimStarted;
     [SerializeField] float PlaceSpeed = 0.9f;
     private Vector3 targetPos;
     void Start(){
@@ -22,14 +22,21 @@ public class BlockDrag : MonoBehaviour
             isDragging = true;
         
     }
-
     private void Update()
     {
+        if(playerscript.Instance.SimilationStarted)
+        {
+            canMove = false;
+        }
+        else
+        {
+            canMove = false ;
+        }
+
         if (isDragging && canMove)
         {
             targetPos = GetMouseWorldPosition() + offset;
             transform.position = VectorFixedLerp(transform.position, targetPos, PlaceSpeed);
-            IsPlaced = false;
         }
     }
     float FixedLerp(float a, float b, float decay){
@@ -42,7 +49,6 @@ public class BlockDrag : MonoBehaviour
     private void OnMouseUp()
     {
         isDragging = false;
-        IsPlaced = true;
         if (willdestroy)
         {
             Destroy(gameObject);

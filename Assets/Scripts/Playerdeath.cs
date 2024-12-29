@@ -28,15 +28,20 @@ public class PlayerDeath : MonoBehaviour
     private void Die()
     {
             deathScreen.SetActive(true);
+        playerscript.Instance.SimilationStarted = false;
+        Time.timeScale = 0f;
     }
 
     public void Retry()
     {
       SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 0f;
     }
     public void BackToMenu()
     {
         SceneManager.LoadScene(MainMenuName);
+        Time.timeScale = 0f;
+
     }
     public void QuitGame()
     {

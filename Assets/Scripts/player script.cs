@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class playerscript : MonoBehaviour
 {
     public float attractionSpeed = 8f;
@@ -14,12 +13,29 @@ public class playerscript : MonoBehaviour
     private GameObject[] attractors;
     private GameObject[] repellers;
 
+    public bool SimilationStarted;
+
+    public static playerscript Instance;
     private void Update()
     {
-        AttractOrRepelObjects();
-        ApplyMovement();
+        if (SimilationStarted)
+        {
+            AttractOrRepelObjects();
+            ApplyMovement();
+        }
     }
-
+    private void Start()
+    {
+        Instance = this;
+    }
+    public void SimStarted()
+    {
+        SimilationStarted = true;
+    }
+    public void SimStop()
+    {
+        SimilationStarted = false;
+    }
     private void AttractOrRepelObjects()
     {
         attractors = GameObject.FindGameObjectsWithTag("Attractor");
@@ -32,26 +48,14 @@ public class playerscript : MonoBehaviour
             BlockDrag blockDrag = attractor.GetComponent<BlockDrag>();
             if (blockDrag != null && !blockDrag.isColliding)
             {
-                if (blockDrag.canMove)
+                float distanceToAttractor = Vector3.Distance(transform.position, attractor.transform.position);
+                if (distanceToAttractor <= interactionRange && distanceToAttractor > minimumDistance)
                 {
-                    float distanceToAttractor = Vector3.Distance(transform.position, attractor.transform.position);
-                    if (distanceToAttractor <= interactionRange && distanceToAttractor > minimumDistance)
-                    {
-                        Vector3 directionToAttractor = (attractor.transform.position - transform.position).normalized;
-                        float forceMultiplier = Mathf.Lerp(1f, 0.5f, distanceToAttractor / interactionRange);
-                        attractionDirection += directionToAttractor * forceMultiplier / Mathf.Max(distanceToAttractor, 1f);
-                    }
+                    Vector3 directionToAttractor = (attractor.transform.position - transform.position).normalized;
+                    float forceMultiplier = Mathf.Lerp(1f, 0.5f, distanceToAttractor / interactionRange);
+                    attractionDirection += directionToAttractor * forceMultiplier / Mathf.Max(distanceToAttractor, 1f);
                 }
-                else if(blockDrag.IsPlaced)
-                {
-                    float distanceToAttractor = Vector3.Distance(transform.position, attractor.transform.position);
-                    if (distanceToAttractor <= interactionRange && distanceToAttractor > minimumDistance)
-                    {
-                        Vector3 directionToAttractor = (attractor.transform.position - transform.position).normalized;
-                        float forceMultiplier = Mathf.Lerp(1f, 0.5f, distanceToAttractor / interactionRange);
-                        attractionDirection += directionToAttractor * forceMultiplier / Mathf.Max(distanceToAttractor, 1f);
-                    }
-                }
+
             }
         }
 
@@ -60,27 +64,13 @@ public class playerscript : MonoBehaviour
             BlockDrag blockDrag = repeller.GetComponent<BlockDrag>();
             if (blockDrag != null && !blockDrag.isColliding)
             {
-                if (blockDrag.canMove)
+                float distanceToRepeller = Vector3.Distance(transform.position, repeller.transform.position);
+                if (distanceToRepeller <= interactionRange && distanceToRepeller > minimumDistance)
                 {
-                    float distanceToRepeller = Vector3.Distance(transform.position, repeller.transform.position);
-                    if (distanceToRepeller <= interactionRange && distanceToRepeller > minimumDistance)
-                    {
-                        Vector3 directionToRepeller = (transform.position - repeller.transform.position).normalized;
-                        float forceMultiplier = Mathf.Lerp(1f, 0.3f, distanceToRepeller / interactionRange);
-                        repulsionDirection += directionToRepeller * forceMultiplier / Mathf.Max(distanceToRepeller, 1f);
-                    }
+                    Vector3 directionToRepeller = (transform.position - repeller.transform.position).normalized;
+                    float forceMultiplier = Mathf.Lerp(1f, 0.3f, distanceToRepeller / interactionRange);
+                    repulsionDirection += directionToRepeller * forceMultiplier / Mathf.Max(distanceToRepeller, 1f);
                 }
-                else if (blockDrag.IsPlaced)
-                {
-                    float distanceToRepeller = Vector3.Distance(transform.position, repeller.transform.position);
-                    if (distanceToRepeller <= interactionRange && distanceToRepeller > minimumDistance)
-                    {
-                        Vector3 directionToRepeller = (transform.position - repeller.transform.position).normalized;
-                        float forceMultiplier = Mathf.Lerp(1f, 0.3f, distanceToRepeller / interactionRange);
-                        repulsionDirection += directionToRepeller * forceMultiplier / Mathf.Max(distanceToRepeller, 1f);
-                    }
-                }
-
             }
         }
 
