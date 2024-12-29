@@ -13,7 +13,7 @@ Shader "Custom/UIBlur"
         // see Stencil in UI/Default
         [HideInInspector][PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
         [HideInInspector]_StencilComp ("Stencil Comparison", Float) = 8
-        [HideInInspector]_Stencil ("Stencil ID", Float) = 0
+        [HideInInspector]_Stencil ("Stencil ID", Float) = 0.0
         [HideInInspector]_StencilOp ("Stencil Operation", Float) = 0
         [HideInInspector]_StencilWriteMask ("Stencil Write Mask", Float) = 255
         [HideInInspector]_StencilReadMask ("Stencil Read Mask", Float) = 255
