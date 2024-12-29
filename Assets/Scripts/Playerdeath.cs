@@ -35,12 +35,12 @@ public class PlayerDeath : MonoBehaviour
     public void Retry()
     {
       SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        Time.timeScale = 0f;
+        Time.timeScale = 1f;
     }
     public void BackToMenu()
     {
         SceneManager.LoadScene(MainMenuName);
-        Time.timeScale = 0f;
+        Time.timeScale = 1f;
 
     }
     public void QuitGame()
