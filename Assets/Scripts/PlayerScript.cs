@@ -110,6 +110,7 @@ public class PlayerScript : MonoBehaviour
 
         Vector3 force = (attractionDirection * attractionSpeed) + (repulsionDirection * repulsionForce);
         ApplyForce(force);
+        Debug.Log(force);
     }
 
     private void ApplyForce(Vector3 force)
