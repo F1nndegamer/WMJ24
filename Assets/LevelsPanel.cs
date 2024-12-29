@@ -9,6 +9,10 @@ public class LevelsPanel : MonoBehaviour
     [Header("0 = easy, 1 = medium, 2 = hard")]
     public int[] difficulties;
     [SerializeField] private GameObject levelParent;
+    void Start(){
+        levelsUnlocked = PlayerPrefs.GetInt("levels");
+        if(levelsUnlocked == 0) { levelsUnlocked = 1; }
+    }
     public void Open()
     {
         if (!opened)
@@ -18,6 +22,7 @@ public class LevelsPanel : MonoBehaviour
             {
                 LevelButton button = Instantiate(Resources.Load("LevelButton") as GameObject, levelParent.transform).GetComponent<LevelButton>();
                 button.colors = colors;
+                if(i <= levelsUnlocked){ button.unlocked = true; }
                 button.ButtonUpdate();
                 button.n = i;
                 LevelButton.Difficulty difficulty = LevelButton.Difficulty.Easy;

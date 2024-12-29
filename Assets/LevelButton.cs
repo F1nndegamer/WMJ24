@@ -33,9 +33,10 @@ public class LevelButton : MonoBehaviour
     }
     private IEnumerator ButtonIn()
     {
+        yield return new WaitForSecondsRealtime(n / 10f);
         while (transform.localScale.x < 1)
         {
-            transform.localScale += Vector3.one * Time.deltaTime;
+            transform.localScale += Vector3.one * Time.deltaTime * 5;
             yield return null;
         }
         transform.localScale = Vector3.one;
