@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Collections;
 
 public class TransferButtonEvents : MonoBehaviour, IPointerDownHandler
 {
@@ -21,9 +22,10 @@ public class TransferButtonEvents : MonoBehaviour, IPointerDownHandler
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-        Invoke("InvokeIt", delay);
+        StartCoroutine(InvokeIt());
     }
-    public void InvokeIt(){
+    public IEnumerator InvokeIt(){
+        yield return new WaitForSecondsRealtime(delay);
         if (onClickEvents != null)
         {
             onClickEvents.Invoke();

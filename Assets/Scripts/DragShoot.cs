@@ -16,7 +16,7 @@ public class DragAndShoot : MonoBehaviour
     {
         if (!isMoving && Input.GetMouseButtonDown(0))
         {
-            Vector2 startPos = GetWorldPoint(Input.mousePosition);
+            Vector2 startPos = transform.position;
             if (Vector2.Distance(startPos, transform.position) <= 0.5f)
             {
                 dragStartPos = startPos;
@@ -29,7 +29,6 @@ public class DragAndShoot : MonoBehaviour
         if (isDragging && dragStartedOnPlayer && Input.GetMouseButton(0))
         {
             dragEndPos = GetWorldPoint(Input.mousePosition);
-            DrawDragLine(dragStartPos, dragEndPos);
         }
 
         if (isDragging && dragStartedOnPlayer && Input.GetMouseButtonUp(0))
@@ -45,6 +44,7 @@ public class DragAndShoot : MonoBehaviour
 
             dragStartedOnPlayer = false;
         }
+        DrawDragLine(dragStartPos, dragEndPos);
 
         if (isMoving && PlayerScript.Instance.SimilationStarted)
         {

@@ -22,6 +22,7 @@ public class Intro : MonoBehaviour
             StartCoroutine(LoadScene());
         }
         PlayerPrefs.SetInt("n", PlayerPrefs.GetInt("n") + 1);
+        PlayerPrefs.Save();
     }
     private IEnumerator PlayIntro()
     {

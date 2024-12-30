@@ -11,6 +11,7 @@ public class PlayerDeath : MonoBehaviour
     public GameObject deathScreen;
     [SerializeField] private TextMeshProUGUI deathmsg;
     [SerializeField] private Image loadingImage;
+    [SerializeField] private GameObject skip;
 
     [SerializeField] private CanvasGroup overlay;
     public static PlayerDeath Instance;
@@ -52,6 +53,11 @@ public class PlayerDeath : MonoBehaviour
         deathmsg.text = message;
         yield return new WaitForSeconds(2);
         Time.timeScale = 0f;
+        int currentLevel = Int32.Parse(SceneManager.GetActiveScene().name.Substring(5));
+        Global.attempts[currentLevel - 1]++;
+        if(Global.attempts[currentLevel - 1] > 2){
+            skip.SetActive(true);
+        }
     }
     public void NextLevel()
     {
@@ -60,6 +66,7 @@ public class PlayerDeath : MonoBehaviour
         currentLevel = Int32.Parse(levelName.Substring(5));
         Debug.Log(currentLevel);
         PlayerPrefs.SetInt("levels", currentLevel);
+        PlayerPrefs.Save();
         if (currentLevel < 8)
         {
             loadLevel("Level" + (currentLevel + 1).ToString());
