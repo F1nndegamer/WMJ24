@@ -1166,10 +1166,10 @@ RectTransform:
   - {fileID: 1058512762147255945}
   m_Father: {fileID: 915046826}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00001918097}
-  m_SizeDelta: {x: 0, y: 495.5}
+  m_AnchoredPosition: {x: 0, y: 0.000030517578}
+  m_SizeDelta: {x: 0, y: 613.56}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &710239817
 MonoBehaviour:
@@ -1753,10 +1753,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cba357b68b90d1043acf954281617980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _usernameInputField: {fileID: 0}
   dataPrefab: {fileID: 3339384559165750705}
   parent: {fileID: 710239816}
-  Score: 0
+  rectA: {fileID: 0}
 --- !u!1 &1702054590
 GameObject:
   m_ObjectHideFlags: 0
@@ -1839,8 +1838,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6137497}
   m_HandleRect: {fileID: 6137496}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.4499592
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

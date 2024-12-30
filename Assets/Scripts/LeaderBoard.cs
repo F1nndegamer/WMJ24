@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using Dan.Main;
+using UnityEngine.UI;
 
 namespace LeaderboardCreatorDemo
 {
@@ -8,6 +9,7 @@ namespace LeaderboardCreatorDemo
     {
         [SerializeField] private GameObject dataPrefab;
         [SerializeField] private Transform parent;
+        public ScrollRect rectA;
 
         private void Start()
         {
