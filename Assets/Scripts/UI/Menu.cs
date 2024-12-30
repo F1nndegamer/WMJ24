@@ -12,7 +12,13 @@ public class Menu : MonoBehaviour
     private void Awake(){
         Instance = this;
     }
-
+    private void Update()
+    {
+        if(Input.GetMouseButtonDown(0))
+        {
+            SFXManager.instance.PlaySFX("Click");
+        }
+    }
     private void Start()
     {
         StartCoroutine(InTransition());

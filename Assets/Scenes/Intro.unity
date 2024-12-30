@@ -1978,6 +1978,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 298f745a9409c2849b3c1d7f8f827e29, type: 3}
   - name: Bounds
     clip: {fileID: 8300000, guid: f9bc92c6c89192c43838ca5c298c9bc1, type: 3}
+  - name: Burn
+    clip: {fileID: 8300000, guid: 60e604d057f14e54c948e7320d5d0ac4, type: 3}
   audioSource: {fileID: 149099435}
 --- !u!82 &1629062154
 AudioSource:

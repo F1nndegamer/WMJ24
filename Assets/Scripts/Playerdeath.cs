@@ -39,6 +39,7 @@ public class PlayerDeath : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             StartCoroutine(Die("Depolarized"));
+            SFXManager.instance.PlaySFX("Burn");
         }
         if (collision.gameObject.CompareTag("Border"))
         {
