@@ -67,8 +67,10 @@ public class PlayerDeath : MonoBehaviour
         string levelName = SceneManager.GetActiveScene().name;
         currentLevel = Int32.Parse(levelName.Substring(5));
         Debug.Log(currentLevel);
+        if(PlayerPrefs.GetInt("levels") < currentLevel + 1) {
         PlayerPrefs.SetInt("levels", currentLevel + 1);
         PlayerPrefs.Save();
+        } 
         if (currentLevel < 8)
         {
             Global.time += Mathf.FloorToInt(GetComponent<PlayerScript>().timeSpentThisLevel);
