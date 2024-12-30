@@ -77,7 +77,7 @@ public class PlayerDeath : MonoBehaviour
         else
         {
             Global.time += Mathf.FloorToInt(GetComponent<PlayerScript>().timeSpentThisLevel);
-            loadLevel("Leadeboard");
+            loadLevel("Leaderboard");
         }
     }
     public void Retry()

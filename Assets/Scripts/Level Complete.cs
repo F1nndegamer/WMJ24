@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,7 +10,7 @@ public class LevelComplete : MonoBehaviour
     public string MainMenuName;
     void Start()
     {
-        if(WinScreen != null)
+        if (WinScreen != null)
         {
             WinScreen.SetActive(false);
         }
@@ -20,6 +21,12 @@ public class LevelComplete : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             StartCoroutine(Win());
+            int currentLevel;
+            string levelName = SceneManager.GetActiveScene().name;
+            currentLevel = Int32.Parse(levelName.Substring(5));
+            Debug.Log(currentLevel);
+            PlayerPrefs.SetInt("levels", currentLevel + 1);
+            PlayerPrefs.Save();
         }
     }
     private IEnumerator Win()
