@@ -39,12 +39,16 @@ public class PlayerDeath : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             StartCoroutine(Die("Depolarized"));
-            SFXManager.instance.PlaySFX("Burn");
+
+            if (SFXManager.instance != null)
+                SFXManager.instance.PlaySFX("Burn");
         }
         if (collision.gameObject.CompareTag("Border"))
         {
             StartCoroutine(Die("Out of Border"));
-            SFXManager.instance.PlaySFX("Bounds");
+
+            if (SFXManager.instance != null)
+                SFXManager.instance.PlaySFX("Bounds");
         }
     }
 
@@ -69,10 +73,11 @@ public class PlayerDeath : MonoBehaviour
         string levelName = SceneManager.GetActiveScene().name;
         currentLevel = Int32.Parse(levelName.Substring(5));
         Debug.Log(currentLevel);
-        if(PlayerPrefs.GetInt("levels") < currentLevel + 1) {
-        PlayerPrefs.SetInt("levels", currentLevel + 1);
-        PlayerPrefs.Save();
-        } 
+        if (PlayerPrefs.GetInt("levels") < currentLevel + 1)
+        {
+            PlayerPrefs.SetInt("levels", currentLevel + 1);
+            PlayerPrefs.Save();
+        }
         if (currentLevel < 8)
         {
             Global.time += Mathf.FloorToInt(GetComponent<PlayerScript>().timeSpentThisLevel);
