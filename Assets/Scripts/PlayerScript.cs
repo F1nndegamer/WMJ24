@@ -1,3 +1,5 @@
+using System;
+using TMPro;
 using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
@@ -19,24 +21,55 @@ public class PlayerScript : MonoBehaviour
     public bool SimilationStarted;
     public bool RedPole;
     public static PlayerScript Instance;
+    private float elapsedTime = 0f;
+    public int timeSpentThisLevel = 0;
+    public TextMeshProUGUI totalTime, thisTime;
+
+    public static string IntToTimeString(int timeInMilliseconds)
+    {
+        System.TimeSpan timeSpan = System.TimeSpan.FromMilliseconds(timeInMilliseconds);
+        return timeSpan.ToString(@"hh\:mm\:ss\.fff");
+    }
+    public static int TimeStringToInt(string timeString)
+    {
+        if (System.TimeSpan.TryParseExact(timeString, @"hh\:mm\:ss\.fff", null, out System.TimeSpan timeSpan))
+        {
+            return (int)timeSpan.TotalMilliseconds;
+        }
+        throw new System.FormatException("Invalid time format. Expected format: hh:mm:ss.fff");
+    }
+
     private void Update()
     {
+        totalTime.text = IntToTimeString(Global.time + timeSpentThisLevel);
+        thisTime.text = IntToTimeString(timeSpentThisLevel);
         if (SimilationStarted)
         {
+
             AttractOrRepelObjects();
             ApplyMovement();
+            elapsedTime += Time.deltaTime * 1000f;
+            if (elapsedTime >= 1f)
+            {
+                timeSpentThisLevel += Mathf.FloorToInt(elapsedTime);
+                elapsedTime %= 1f;
+            }
         }
         north.color = new Color(1, 1, 1, Mathf.Lerp(north.color.a, RedPole ? 0 : 1, 0.3f));
     }
-    void Awake(){
+    void Awake()
+    {
         inputActions = new InputActions();
         input = inputActions.Default;
         input.Flip.performed += ctx => ChangePole();
+        input.Play.performed += ctx => SimStarted();
     }
-    private void OnEnable() {
+    private void OnEnable()
+    {
         input.Enable();
     }
-    private void OnDisable() {
+    private void OnDisable()
+    {
         input.Disable();
     }
     private void Start()
@@ -64,7 +97,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void AttractOrRepelObjects()
     {
-        if(RedPole)
+        if (RedPole)
         {
             attractors = GameObject.FindGameObjectsWithTag("Attractor");
             repellers = GameObject.FindGameObjectsWithTag("Repeller");
@@ -80,7 +113,7 @@ public class PlayerScript : MonoBehaviour
         foreach (GameObject attractor in attractors)
         {
             BlockDrag blockDrag = attractor.GetComponent<BlockDrag>();
-            if (blockDrag != null && !blockDrag.isColliding)
+            if (blockDrag != null)
             {
                 float distanceToAttractor = Vector3.Distance(transform.position, attractor.transform.position);
                 if (distanceToAttractor <= interactionRange && distanceToAttractor > minimumDistance)
@@ -96,7 +129,7 @@ public class PlayerScript : MonoBehaviour
         foreach (GameObject repeller in repellers)
         {
             BlockDrag blockDrag = repeller.GetComponent<BlockDrag>();
-            if (blockDrag != null && !blockDrag.isColliding)
+            if (blockDrag != null)
             {
                 float distanceToRepeller = Vector3.Distance(transform.position, repeller.transform.position);
                 if (distanceToRepeller <= interactionRange && distanceToRepeller > minimumDistance)
@@ -112,7 +145,7 @@ public class PlayerScript : MonoBehaviour
         ApplyForce(force);
     }
 
-    private void ApplyForce(Vector3 force)
+    public void ApplyForce(Vector3 force)
     {
         acceleration = force;
     }

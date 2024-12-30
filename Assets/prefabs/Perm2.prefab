@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8052816354600665738}
   - component: {fileID: -8007732672021049671}
   m_Layer: 0
-  m_Name: Repel
+  m_Name: Perm2
   m_TagString: Repeller
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ccc923c8d0766f34a810d57765f23bec, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 56a110c480dd7ed4498ff7ee0073a238, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -105,11 +105,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0, z: 0}
   isColliding: 0
-  isDragging: 1
-  canMove: 1
+  isDragging: 0
+  canMove: 0
   SimStarted: 0
   PlaceSpeed: 15
-  targetScale: 0.1
+  targetScale: 0.15
 --- !u!50 &-4902682339820887517
 Rigidbody2D:
   serializedVersion: 5

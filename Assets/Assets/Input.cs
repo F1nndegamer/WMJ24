@@ -53,6 +53,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Play"",
+                    ""type"": ""Button"",
+                    ""id"": ""8503e4c8-8951-4b93-ab3e-2ac47282c39f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -88,6 +97,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Flip"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3781240b-f827-4daf-b9ba-2beae09cac44"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Play"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -99,6 +119,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Default_Fullscreen = m_Default.FindAction("Fullscreen", throwIfNotFound: true);
         m_Default_Mouse = m_Default.FindAction("Mouse", throwIfNotFound: true);
         m_Default_Flip = m_Default.FindAction("Flip", throwIfNotFound: true);
+        m_Default_Play = m_Default.FindAction("Play", throwIfNotFound: true);
     }
 
     ~@InputActions()
@@ -168,6 +189,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Default_Fullscreen;
     private readonly InputAction m_Default_Mouse;
     private readonly InputAction m_Default_Flip;
+    private readonly InputAction m_Default_Play;
     public struct DefaultActions
     {
         private @InputActions m_Wrapper;
@@ -175,6 +197,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Fullscreen => m_Wrapper.m_Default_Fullscreen;
         public InputAction @Mouse => m_Wrapper.m_Default_Mouse;
         public InputAction @Flip => m_Wrapper.m_Default_Flip;
+        public InputAction @Play => m_Wrapper.m_Default_Play;
         public InputActionMap Get() { return m_Wrapper.m_Default; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -193,6 +216,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Flip.started += instance.OnFlip;
             @Flip.performed += instance.OnFlip;
             @Flip.canceled += instance.OnFlip;
+            @Play.started += instance.OnPlay;
+            @Play.performed += instance.OnPlay;
+            @Play.canceled += instance.OnPlay;
         }
 
         private void UnregisterCallbacks(IDefaultActions instance)
@@ -206,6 +232,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Flip.started -= instance.OnFlip;
             @Flip.performed -= instance.OnFlip;
             @Flip.canceled -= instance.OnFlip;
+            @Play.started -= instance.OnPlay;
+            @Play.performed -= instance.OnPlay;
+            @Play.canceled -= instance.OnPlay;
         }
 
         public void RemoveCallbacks(IDefaultActions instance)
@@ -228,5 +257,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnFullscreen(InputAction.CallbackContext context);
         void OnMouse(InputAction.CallbackContext context);
         void OnFlip(InputAction.CallbackContext context);
+        void OnPlay(InputAction.CallbackContext context);
     }
 }

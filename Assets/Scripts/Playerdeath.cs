@@ -54,8 +54,10 @@ public class PlayerDeath : MonoBehaviour
         yield return new WaitForSeconds(2);
         Time.timeScale = 0f;
         int currentLevel = Int32.Parse(SceneManager.GetActiveScene().name.Substring(5));
+        Debug.Log(currentLevel);
         Global.attempts[currentLevel - 1]++;
-        if(Global.attempts[currentLevel - 1] > 2){
+        if (Global.attempts[currentLevel - 1] > 2)
+        {
             skip.SetActive(true);
         }
     }
@@ -69,10 +71,12 @@ public class PlayerDeath : MonoBehaviour
         PlayerPrefs.Save();
         if (currentLevel < 8)
         {
+            Global.time += Mathf.FloorToInt(GetComponent<PlayerScript>().timeSpentThisLevel);
             loadLevel("Level" + (currentLevel + 1).ToString());
         }
         else
         {
+            Global.time += Mathf.FloorToInt(GetComponent<PlayerScript>().timeSpentThisLevel);
             loadLevel("Leadeboard");
         }
     }
@@ -105,6 +109,7 @@ public class PlayerDeath : MonoBehaviour
     public void loadLevel(string name) { if (!loadingSmth) { StartCoroutine(LoadLevel(name)); } }
     private IEnumerator LoadLevel(string name)
     {
+        Time.timeScale = 1;
         loadingSmth = true;
         float progress = 0f;
         overlay.gameObject.SetActive(true);
@@ -119,7 +124,6 @@ public class PlayerDeath : MonoBehaviour
         int lastScene = SceneManager.GetActiveScene().buildIndex;
         AsyncOperation loading = SceneManager.LoadSceneAsync(name, LoadSceneMode.Single);
 
-        loading.allowSceneActivation = false;
         while (loading.progress < 0.9f)
         {
             if (progress < loading.progress)
