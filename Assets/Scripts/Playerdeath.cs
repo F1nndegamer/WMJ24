@@ -13,10 +13,12 @@ public class PlayerDeath : MonoBehaviour
     [SerializeField] private Image loadingImage;
 
     [SerializeField] private CanvasGroup overlay;
+    public static PlayerDeath Instance;
     private bool loadingSmth = false;
     public string MainMenuName;
     private void Start()
     {
+        Instance = this;
         StartCoroutine(InTransition());
     }
     private IEnumerator InTransition()
@@ -60,21 +62,21 @@ public class PlayerDeath : MonoBehaviour
         PlayerPrefs.SetInt("levels", currentLevel);
         if (currentLevel < 8)
         {
-            LoadLevel("Level" + (currentLevel + 1).ToString());
+            loadLevel("Level" + (currentLevel + 1).ToString());
         }
         else
         {
-            LoadLevel("Leadeboard");
+            loadLevel("Leadeboard");
         }
     }
     public void Retry()
     {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().name));
+        loadLevel(SceneManager.GetActiveScene().name);
         Time.timeScale = 1f;
     }
     public void BackToMenu()
     {
-        StartCoroutine(LoadLevel("Menu"));
+        loadLevel("Menu");
         Time.timeScale = 1f;
     }
     public void QuitGame()
@@ -93,6 +95,7 @@ public class PlayerDeath : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.5f);
         Application.Quit();
     }
+    public void loadLevel(string name) { if (!loadingSmth) { StartCoroutine(LoadLevel(name)); } }
     private IEnumerator LoadLevel(string name)
     {
         loadingSmth = true;
@@ -107,7 +110,8 @@ public class PlayerDeath : MonoBehaviour
             yield return null;
         }
         int lastScene = SceneManager.GetActiveScene().buildIndex;
-        AsyncOperation loading = SceneManager.LoadSceneAsync(name, LoadSceneMode.Additive);
+        AsyncOperation loading = SceneManager.LoadSceneAsync(name, LoadSceneMode.Single);
+
         loading.allowSceneActivation = false;
         while (loading.progress < 0.9f)
         {

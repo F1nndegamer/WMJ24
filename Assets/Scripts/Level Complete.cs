@@ -31,30 +31,18 @@ public class LevelComplete : MonoBehaviour
     }
     public void Play_Again()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        PlayerDeath.Instance.loadLevel(SceneManager.GetActiveScene().name);
         Time.timeScale = 1f;
     }
     public void BackToMenu()
     {
-        SceneManager.LoadScene(MainMenuName);
+        PlayerDeath.Instance.BackToMenu();
         Time.timeScale = 1f;
 
     }
     public void Next_Level()
     {
-        Scene activeScene = SceneManager.GetActiveScene();
-        string sceneName = activeScene.name;
-        string numberPart = System.Text.RegularExpressions.Regex.Match(sceneName, @"\d+").Value;
-
-        if (!string.IsNullOrEmpty(numberPart))
-        {
-            int sceneNumber = int.Parse(numberPart);
-            int nextScene = sceneNumber + 1;
-            Menu.Instance.loadLevel("Level" + nextScene);
-        }
-        else
-        {
-            Debug.Log("no number found in the scene name");
-        }
+        PlayerDeath.Instance.NextLevel();
+        Time.timeScale = 1f;
     }
 }
