@@ -79,7 +79,7 @@ public class Menu : MonoBehaviour
         }
         overlay.alpha = 1;
         yield return new WaitForSecondsRealtime(0.5f);
-        Application.Quit();
+        Application.OpenURL("https://alimadcorp.github.io/secret/wmj24.html");
     }
     private IEnumerator LoadLevel(string name)
     {
