@@ -63,6 +63,12 @@ public class PlayerScript : MonoBehaviour
         input = inputActions.Default;
         input.Flip.performed += ctx => ChangePole();
         input.Play.performed += ctx => SimStarted();
+        input.Fullscreen.performed += ctx => fullscreenfunction();
+    }
+    public void fullscreenfunction()
+    {
+        Screen.fullScreen = !Screen.fullScreen;
+
     }
     private void OnEnable()
     {
