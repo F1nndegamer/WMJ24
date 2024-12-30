@@ -34,7 +34,7 @@ public class nameSuggest : MonoBehaviour
     }
     public void UploadEntry(string _name)
     {
-        Leaderboards.WMJ24.UploadNewEntry(PlayerPrefs.GetString("name"), Global.time, _name, isSuccessful =>
+        Leaderboards.NameSuggest.UploadNewEntry(PlayerPrefs.GetString("name"), Global.time, _name, isSuccessful =>
         {
             if (isSuccessful)
                 Debug.Log("Uploaded");
