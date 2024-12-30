@@ -27,6 +27,8 @@ public class LevelsPanel : MonoBehaviour
                 return;
             }
             opened = true;
+            levelsUnlocked = PlayerPrefs.GetInt("levels");
+            if (levelsUnlocked == 0) { levelsUnlocked = 1; }
             for (int i = 1; i <= levels; i++)
             {
                 LevelButton button = Instantiate(Resources.Load("LevelButton") as GameObject, levelParent.transform).GetComponent<LevelButton>();

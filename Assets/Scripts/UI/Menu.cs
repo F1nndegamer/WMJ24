@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,12 +10,13 @@ public class Menu : MonoBehaviour
     [SerializeField] private Image loadingImage;
     [SerializeField] private bool loadingSmth = false;
     public static Menu Instance;
-    private void Awake(){
+    private void Awake()
+    {
         Instance = this;
     }
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             SFXManager.instance.PlaySFX("Click");
         }
@@ -39,17 +41,35 @@ public class Menu : MonoBehaviour
         if (!loadingSmth)
         {
             loadingSmth = true;
+            try
+            {
+                if (PlayerPrefs.GetInt("lastlevel") <= PlayerPrefs.GetInt("startlevel"))
+                {
+                    PlayerPrefs.SetInt("startlevel", Int32.Parse(name.Substring(5)));
+                    PlayerPrefs.Save();
+                }
+                else
+                {
+
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e);
+            }
             StartCoroutine(LoadLevel(name));
         }
     }
-    public void exit(){
+    public void exit()
+    {
         if (!loadingSmth)
         {
             loadingSmth = true;
             StartCoroutine(Exit());
         }
     }
-    private IEnumerator Exit(){
+    private IEnumerator Exit()
+    {
         overlay.gameObject.SetActive(true);
         for (float t = 0; t < 1; t += Time.unscaledDeltaTime)
         {

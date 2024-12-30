@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public class PlayerScript : MonoBehaviour
 {
     public float attractionSpeed = 8f;
@@ -41,8 +42,16 @@ public class PlayerScript : MonoBehaviour
 
     private void Update()
     {
-        totalTime.text = IntToTimeString(Global.time + timeSpentThisLevel);
-        thisTime.text = IntToTimeString(timeSpentThisLevel);
+        if (PlayerPrefs.GetInt("startlevel") == 1)
+        {
+            totalTime.text = IntToTimeString(Global.time + timeSpentThisLevel);
+            thisTime.text = IntToTimeString(timeSpentThisLevel);
+        }
+        else
+        {
+            totalTime.gameObject.SetActive(false);
+            thisTime.gameObject.SetActive(false);
+        }
         if (SimilationStarted)
         {
 
@@ -64,11 +73,16 @@ public class PlayerScript : MonoBehaviour
         input.Flip.performed += ctx => ChangePole();
         input.Play.performed += ctx => SimStarted();
         input.Fullscreen.performed += ctx => fullscreenfunction();
+        PlayerPrefs.SetInt("lastlevel", Int32.Parse(SceneManager.GetActiveScene().name.Substring(5)));
+        PlayerPrefs.Save();
+        if(Int32.Parse(SceneManager.GetActiveScene().name.Substring(5)) == 8){
+            PlayerPrefs.SetInt("startlevel", 0);
+            PlayerPrefs.Save();
+        }
     }
     public void fullscreenfunction()
     {
         Screen.fullScreen = !Screen.fullScreen;
-
     }
     private void OnEnable()
     {
