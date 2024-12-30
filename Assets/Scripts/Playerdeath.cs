@@ -61,7 +61,7 @@ public class PlayerDeath : MonoBehaviour
         Time.timeScale = 0f;
         
         deathScreen.SetActive(true);
-        deathScreen.GetComponentsInChildren<Animator>()[0].SetBool("show", true);
+        deathScreen.GetComponent<Animator>().SetBool("show", true);
         int currentLevel = Int32.Parse(SceneManager.GetActiveScene().name.Substring(5));
         Debug.Log(currentLevel);
         Global.attempts[currentLevel - 1]++;
