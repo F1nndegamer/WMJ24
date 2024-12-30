@@ -6,7 +6,6 @@ public class Pause : MonoBehaviour
 {
     public GameObject PauseScreen;
     public bool Paused;
-    public Animator animator;
     public string MainMenuName;
 
     void Start()
@@ -19,49 +18,26 @@ public class Pause : MonoBehaviour
         {
             Debug.LogError("PauseScreen is not set in the Inspector!");
         }
-
-        if (animator == null)
-        {
-            Debug.LogError("Animator is not set in the Inspector!");
-        }
     }
 
     private void Update()
     {
+                PauseScreen.transform.position = new Vector3(14, 33, 0);
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (Paused)
             {
                 Paused = false;
-                StartCoroutine(HidePause());
+                PauseScreen.SetActive(false);
+                Time.timeScale = 1f;
             }
             else
             {
                 Paused = true;
-                StartCoroutine(ShowPause());
+                PauseScreen.SetActive(true);
+                Time.timeScale = 0f;
             }
         }
-    }
-
-    private IEnumerator HidePause()
-    {
-        if (animator == null || PauseScreen == null) yield break;
-
-        animator.SetBool("hide", true);
-        animator.SetBool("show", false);
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length); // Wait for the animation to finish
-        PauseScreen.SetActive(false);
-        Time.timeScale = 1f; // Resume game time
-    }
-
-    private IEnumerator ShowPause()
-    {
-        if (animator == null || PauseScreen == null) yield break;
-
-        PauseScreen.SetActive(true);
-        animator.SetBool("hide", false);
-        animator.SetBool("show", true);
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length); // Wait for the animation to finish
     }
 
     public void Play_Again()
