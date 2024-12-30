@@ -6,20 +6,12 @@ public class Pause : MonoBehaviour
     public GameObject PauseScreen;
     public bool Paused;
     public string MainMenuName;
-
-    void Start()
+    public static Pause Instance;
+    void Awake()
     {
-        if (PauseScreen != null)
-        {
-            PauseScreen.SetActive(false);
-        }
-        else
-        {
-            Debug.LogError("PauseScreen is not set in the Inspector!");
-        }
+        Instance = this;
     }
-
-    private void PauseToggle()
+    public void PauseToggle()
     {
         if (Paused)
         {

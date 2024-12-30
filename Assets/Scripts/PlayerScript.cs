@@ -73,6 +73,7 @@ public class PlayerScript : MonoBehaviour
         input.Flip.performed += ctx => ChangePole();
         input.Play.performed += ctx => SimStarted();
         input.Fullscreen.performed += ctx => fullscreenfunction();
+        input.Pause.performed += ctx => Pause.Instance.PauseToggle();
         PlayerPrefs.SetInt("lastlevel", Int32.Parse(SceneManager.GetActiveScene().name.Substring(5)));
         PlayerPrefs.Save();
         if(Int32.Parse(SceneManager.GetActiveScene().name.Substring(5)) == 8){
