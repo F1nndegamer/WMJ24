@@ -31,7 +31,8 @@ public class LevelComplete : MonoBehaviour
     }
     private IEnumerator Win()
     {
-        SFXManager.instance.PlaySFX("Win");
+        if(SFXManager.instance != null)
+            SFXManager.instance.PlaySFX("Win");
         WinScreen.SetActive(true);
         WinScreen.GetComponent<Animator>().SetBool("show", true);
         PlayerScript.Instance.SimilationStarted = false;
