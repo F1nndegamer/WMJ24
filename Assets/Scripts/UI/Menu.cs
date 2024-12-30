@@ -43,14 +43,15 @@ public class Menu : MonoBehaviour
             loadingSmth = true;
             try
             {
-                if (PlayerPrefs.GetInt("lastlevel") <= PlayerPrefs.GetInt("startlevel"))
+                if (PlayerPrefs.GetInt("lastlevel") >= Int32.Parse(name.Substring(5)))
                 {
                     PlayerPrefs.SetInt("startlevel", Int32.Parse(name.Substring(5)));
                     PlayerPrefs.Save();
                 }
                 else
                 {
-
+                    PlayerPrefs.SetInt("startlevel", 1);
+                    PlayerPrefs.Save();
                 }
             }
             catch (Exception e)

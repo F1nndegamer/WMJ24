@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,23 +19,19 @@ public class Pause : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void PauseToggle()
     {
-                PauseScreen.transform.position = new Vector3(14, 33, 0);
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Paused)
         {
-            if (Paused)
-            {
-                Paused = false;
-                PauseScreen.SetActive(false);
-                Time.timeScale = 1f;
-            }
-            else
-            {
-                Paused = true;
-                PauseScreen.SetActive(true);
-                Time.timeScale = 0f;
-            }
+            Paused = false;
+            PauseScreen.GetComponent<Animator>().SetBool("show", false);
+            Time.timeScale = 1f;
+        }
+        else
+        {
+            Paused = true;
+            PauseScreen.GetComponent<Animator>().SetBool("show", true);
+            Time.timeScale = 0f;
         }
     }
 
@@ -45,7 +40,7 @@ public class Pause : MonoBehaviour
         if (PlayerDeath.Instance != null)
         {
             PlayerDeath.Instance.loadLevel(SceneManager.GetActiveScene().name);
-            Time.timeScale = 1f; // Ensure time resumes
+            Time.timeScale = 1f;
         }
         else
         {

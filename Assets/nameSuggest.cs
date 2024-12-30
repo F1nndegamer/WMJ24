@@ -1,12 +1,11 @@
-using TMPro;
 using UnityEngine;
+using TMPro;
+using Dan.Main;
 
 public class nameSuggest : MonoBehaviour
 {
-
     void Start()
     {
-
         string name = PlayerPrefs.GetString("gamename");
         if (!string.IsNullOrEmpty(name))
         {
@@ -27,10 +26,18 @@ public class nameSuggest : MonoBehaviour
         }
     }
 
-    private async void UploadName(string _name)
+    private void UploadName(string _name)
     {
         if (string.IsNullOrEmpty(_name)) return;
         string n = PlayerPrefs.GetString("name");
-        
+        UploadEntry(_name);
+    }
+    public void UploadEntry(string _name)
+    {
+        Leaderboards.WMJ24.UploadNewEntry(PlayerPrefs.GetString("name"), Global.time, _name, isSuccessful =>
+        {
+            if (isSuccessful)
+                Debug.Log("Uploaded");
+        });
     }
 }

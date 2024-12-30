@@ -13,7 +13,7 @@ namespace LeaderboardCreatorDemo
 
         private void Start()
         {
-            if (Global.time > PlayerPrefs.GetInt("best"))
+            if (Global.time > PlayerPrefs.GetInt("best") && PlayerPrefs.GetInt("startlevel") <= 1)
             {
                 UploadEntry();
                 PlayerPrefs.SetInt("best", Global.time); 
