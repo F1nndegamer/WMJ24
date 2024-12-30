@@ -22,9 +22,11 @@ public class TransferButtonEvents : MonoBehaviour, IPointerDownHandler
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-        StartCoroutine(InvokeIt());
+        if (button.interactable)
+            StartCoroutine(InvokeIt());
     }
-    public IEnumerator InvokeIt(){
+    public IEnumerator InvokeIt()
+    {
         yield return new WaitForSecondsRealtime(delay);
         if (onClickEvents != null)
         {
