@@ -2173,7 +2173,7 @@ Transform:
   m_GameObject: {fileID: 987394461}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6, y: 1, z: -0.05080712}
+  m_LocalPosition: {x: 0.2, y: 1, z: -0.05080712}
   m_LocalScale: {x: 2.2, y: 2.2, z: 2.2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -2583,7 +2583,7 @@ GameObject:
   - component: {fileID: 1077048106}
   m_Layer: 0
   m_Name: Left
-  m_TagString: Enemy
+  m_TagString: Border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2597,7 +2597,7 @@ Transform:
   m_GameObject: {fileID: 1077048104}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.12, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2661,7 +2661,7 @@ GameObject:
   - component: {fileID: 1127697098}
   m_Layer: 0
   m_Name: down
-  m_TagString: Enemy
+  m_TagString: Border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2675,8 +2675,8 @@ Transform:
   m_GameObject: {fileID: 1127697096}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.16875, y: 0, z: 0}
+  m_LocalScale: {x: 1.3375, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 987394462}
@@ -2739,7 +2739,7 @@ GameObject:
   - component: {fileID: 1131539498}
   m_Layer: 0
   m_Name: up
-  m_TagString: Enemy
+  m_TagString: Border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2753,8 +2753,8 @@ Transform:
   m_GameObject: {fileID: 1131539496}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.16875, y: 0, z: 0}
+  m_LocalScale: {x: 1.3375, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 987394462}
@@ -4622,7 +4622,7 @@ GameObject:
   - component: {fileID: 1976529955}
   m_Layer: 0
   m_Name: Right
-  m_TagString: Enemy
+  m_TagString: Border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
