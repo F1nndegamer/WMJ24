@@ -65,6 +65,7 @@ public class BlockDrag : MonoBehaviour
     private void OnMouseUp()
     {
         isDragging = false;
+        SFXManager.instance.PlaySFX("Place");
         if (willdestroy)
         {
             Destroy(gameObject);

@@ -35,6 +35,7 @@ public class InventoryDrag : MonoBehaviour
         {
             InventoryDrag clonedrag = clone.GetComponent<InventoryDrag>();
             Destroy(clonedrag);
+            SFXManager.instance.PlaySFX("Place");
         }
     }
     Vector3 GetMouseWorldPosition()

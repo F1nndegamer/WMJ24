@@ -31,6 +31,7 @@ public class LevelComplete : MonoBehaviour
     }
     private IEnumerator Win()
     {
+        SFXManager.instance.PlaySFX("Win");
         WinScreen.SetActive(true);
         PlayerScript.Instance.SimilationStarted = false;
         yield return new WaitForSeconds(2);

@@ -43,6 +43,7 @@ public class PlayerDeath : MonoBehaviour
         if (collision.gameObject.CompareTag("Border"))
         {
             StartCoroutine(Die("Out of Border"));
+            SFXManager.instance.PlaySFX("Bounds");
         }
     }
 
