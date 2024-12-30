@@ -2,9 +2,16 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static MusicManager instance;
+    private void Update()
     {
-        DontDestroyOnLoad(this.gameObject);
+        if (instance == null)
+        {
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
     }
 }
