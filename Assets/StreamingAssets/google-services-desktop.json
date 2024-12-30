@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1091740366992",
+    "project_id": "namesuggest-77989",
+    "storage_bucket": "namesuggest-77989.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1091740366992:android:e15363cbe950211a8c8015",
+        "android_client_info": {
+          "package_name": "com.alimad.wmj24"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0pis_g6nY3ccJcyMbmf2owPveQJ4qSMY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
