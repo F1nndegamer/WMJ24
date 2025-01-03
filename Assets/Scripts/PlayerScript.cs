@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Rendering.Universal;
+using System.Collections;
 public class PlayerScript : MonoBehaviour
 {
     public float attractionSpeed = 8f;
@@ -36,6 +37,7 @@ public class PlayerScript : MonoBehaviour
     public Animator winS, loseS;
     public Light2D mlight;
     public Color red, blue;
+    private bool paused = false;
     public static string IntToTimeString(int timeInMilliseconds)
     {
         System.TimeSpan timeSpan = System.TimeSpan.FromMilliseconds(timeInMilliseconds);
@@ -66,7 +68,7 @@ public class PlayerScript : MonoBehaviour
             totalTime.gameObject.SetActive(false);
             thisTime.gameObject.SetActive(false);
         }
-        if (SimilationStarted)
+        if (SimilationStarted && !paused)
         {
             AttractOrRepelObjects(true);
             ApplyMovement(true);
@@ -85,7 +87,7 @@ public class PlayerScript : MonoBehaviour
         north.color = new Color(1, 1, 1, Mathf.Lerp(north.color.a, RedPole ? 0 : 1, 0.3f));
         float t = north.color.a;
         mlight.color = Color.Lerp(blue, red, t);
-        Vector2 vel = velocity;
+        Vector2 vel = acceleration;
         float direction = Mathf.Atan2(vel.y, vel.x);
         float mag = vel.magnitude;
         Vector3 l = arrow.transform.localScale;
@@ -114,6 +116,24 @@ public class PlayerScript : MonoBehaviour
         velocity = Vector2.zero;
         Time.timeScale = 1f;
     }
+    public IEnumerator moveback()
+    {
+        while ((transform.position - startPos).magnitude > 0.1f)
+        {
+            transform.position = VectorFixedLerp(transform.position, startPos, 30);
+            yield return null;
+        }
+        transform.position = startPos;
+    }
+    float FixedLerp(float a, float b, float decay)
+    {
+        a = b + (a - b) * Mathf.Exp(-decay * Time.deltaTime);
+        return a;
+    }
+    Vector3 VectorFixedLerp(Vector3 a, Vector3 b, float decay)
+    {
+        return new Vector3(FixedLerp(a.x, b.x, decay), FixedLerp(a.y, b.y, decay), FixedLerp(a.z, b.z, decay));
+    }
     void Start()
     {
         startPos = transform.position;
@@ -124,15 +144,17 @@ public class PlayerScript : MonoBehaviour
         repellers = GameObject.FindGameObjectsWithTag("Repeller");
         foreach (GameObject magnet in attractors)
         {
-            Destroy(magnet);
+            magnet.GetComponent<BlockDrag>()?.Delete();
         }
         foreach (GameObject magnet in repellers)
         {
-            Destroy(magnet);
+            magnet.GetComponent<BlockDrag>()?.Delete();
         }
-        transform.position = startPos;
+        StartCoroutine(moveback());
         velocity = Vector2.zero;
         SimilationStarted = false;
+        acceleration = Vector2.zero;
+        velocity = Vector2.zero;
         Time.timeScale = 1f;
         Attractor = null;
         Repeller = null;
@@ -164,17 +186,23 @@ public class PlayerScript : MonoBehaviour
     }
     public void SimToggle()
     {
-        SimilationStarted = !SimilationStarted;
-        if (SimilationStarted)
+        if (!SimilationStarted)
         {
+            SimilationStarted = true;
             acceleration = Vector2.zero;
             velocity = Vector2.zero;
+        }
+        else
+        {
+            paused = !paused;
         }
         UpdateMagnets();
     }
     public void SimStop()
     {
         SimilationStarted = false;
+        acceleration = Vector2.zero;
+        velocity = Vector2.zero;
         UpdateMagnets();
     }
     public void ChangePole()
@@ -188,7 +216,7 @@ public class PlayerScript : MonoBehaviour
             RedPole = true;
         }
     }
-    private void UpdateMagnets()
+    public void UpdateMagnets()
     {
         Attractor = GameObject.FindGameObjectsWithTag("Attractor");
         Repeller = GameObject.FindGameObjectsWithTag("Repeller");

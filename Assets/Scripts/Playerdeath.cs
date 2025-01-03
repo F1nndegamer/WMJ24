@@ -59,7 +59,7 @@ public class PlayerDeath : MonoBehaviour
         deathmsg.text = message;
         yield return new WaitForSeconds(2);
         Time.timeScale = 0f;
-        
+
         deathScreen.SetActive(true);
         deathScreen.GetComponent<Animator>().SetBool("show", true);
         int currentLevel = Int32.Parse(SceneManager.GetActiveScene().name.Substring(5));
@@ -99,7 +99,7 @@ public class PlayerDeath : MonoBehaviour
     }
     public void Retry()
     {
-        transform.position = PlayerScript.Instance.startPos;
+        StartCoroutine(GetComponent<PlayerScript>().moveback());
         GetComponent<PlayerScript>().velocity = Vector2.zero;
         PlayerScript.Instance.SimilationStarted = false;
         Time.timeScale = 1f;

@@ -22,9 +22,16 @@ public class BlockDrag : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        zCoordinate = Camera.main.WorldToScreenPoint(transform.position).z;
-        offset = transform.position - GetMouseWorldPosition();
-        isDragging = true;
+        if (Input.GetMouseButton(0))
+        {
+            zCoordinate = Camera.main.WorldToScreenPoint(transform.position).z;
+            offset = transform.position - GetMouseWorldPosition();
+            isDragging = true;
+        }
+        else if (Input.GetMouseButton(1))
+        {
+            delete();
+        }
 
     }
     private void Update()
@@ -43,6 +50,21 @@ public class BlockDrag : MonoBehaviour
             targetPos = GetMouseWorldPosition() + offset;
             transform.position = VectorFixedLerp(transform.position, targetPos, PlaceSpeed);
         }
+    }
+    public void Delete()
+    {
+        StartCoroutine(delete());
+    }
+    private IEnumerator delete()
+    {
+        transform.tag = "Untagged";
+        while (transform.localScale.x > 0)
+        {
+            transform.localScale -= Vector3.one * Time.unscaledDeltaTime * 2.5f;
+            yield return null;
+        }
+        Destroy(gameObject);
+        PlayerScript.Instance.UpdateMagnets();
     }
     private IEnumerator Summoned()
     {
