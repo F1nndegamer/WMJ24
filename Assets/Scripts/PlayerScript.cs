@@ -60,16 +60,9 @@ public class PlayerScript : MonoBehaviour
         {
             Time.timeScale = 1f;
         }
-        if (PlayerPrefs.GetInt("startlevel") == 1)
-        {
-            totalTime.text = IntToTimeString(lastTotalTime + timeSpentThisLevel);
-            thisTime.text = IntToTimeString(timeSpentThisLevel);
-        }
-        else
-        {
-            totalTime.gameObject.SetActive(false);
-            thisTime.gameObject.SetActive(false);
-        }
+        totalTime.text = IntToTimeString(lastTotalTime + timeSpentThisLevel);
+        thisTime.text = IntToTimeString(timeSpentThisLevel);
+
         if (SimilationStarted && !paused)
         {
             AttractOrRepelObjects(true);
@@ -175,7 +168,8 @@ public class PlayerScript : MonoBehaviour
     {
         Time.timeScale = 1f;
         c_level = Int32.Parse(SceneManager.GetActiveScene().name.Substring(5));
-        for(int i = 0; i < c_level; i++){
+        for (int i = 0; i < c_level; i++)
+        {
             lastTotalTime += Global.times[i];
             Debug.Log(Global.times[i]);
         }

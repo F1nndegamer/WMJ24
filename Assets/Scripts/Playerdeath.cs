@@ -105,7 +105,7 @@ public class PlayerDeath : MonoBehaviour
             PlayerPrefs.SetInt("ls" + c_level.ToString(), Global.times[c_level - 1]);
             PlayerPrefs.Save();
         }
-        if (Int32.Parse(SceneManager.GetActiveScene().name.Substring(5)) == 8)
+        if (Int32.Parse(SceneManager.GetActiveScene().name.Substring(5)) == Global.times.Length)
         {
             PlayerPrefs.SetInt("startlevel", 0);
             PlayerPrefs.Save();

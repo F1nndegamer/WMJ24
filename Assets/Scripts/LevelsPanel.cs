@@ -5,7 +5,7 @@ public class LevelsPanel : MonoBehaviour
 {
     [SerializeField] Color[] colors;
     bool opened = false;
-    public int levels = 8;
+    public int levels;
     public GameObject nameSelect;
     public TMP_InputField namee;
     public static int levelsUnlocked = 1;
@@ -15,6 +15,7 @@ public class LevelsPanel : MonoBehaviour
     void Start()
     {
         levelsUnlocked = PlayerPrefs.GetInt("levels");
+        levels = Global.times.Length;
         if (levelsUnlocked == 0) { levelsUnlocked = 1; }
     }
     public void Open()
