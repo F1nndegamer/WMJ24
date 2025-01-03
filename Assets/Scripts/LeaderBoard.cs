@@ -17,6 +17,10 @@ namespace LeaderboardCreatorDemo
             scorea = 0;
             for (int i = 0; i < Global.times.Length; i++)
             {
+                if(Global.times[i] == 0){
+                    LoadEntries();
+                    return;
+                }
                 scorea += Global.times[i];
             }
             UploadEntry();
