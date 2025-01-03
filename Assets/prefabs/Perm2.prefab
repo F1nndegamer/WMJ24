@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 3970301978466083747}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.7324641, y: 0.04296863, z: 0.082427576}
+  m_LocalPosition: {x: -1.7324641, y: 0.04296863, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -108,6 +108,7 @@ MonoBehaviour:
   isDragging: 0
   canMove: 0
   SimStarted: 0
+  perm: 1
   PlaceSpeed: 15
   targetScale: 0.15
 --- !u!50 &-4902682339820887517

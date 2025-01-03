@@ -52,7 +52,7 @@ public class LevelComplete : MonoBehaviour
     }
     public void Next_Level()
     {
-        PlayerDeath.Instance.NextLevel();
+        PlayerDeath.Instance.NextLevel(false);
         Time.timeScale = 1f;
     }
 }

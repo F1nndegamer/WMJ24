@@ -13,6 +13,10 @@ public class Menu : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        for (int i = 1; i <= Global.times.Length; i++)
+        {
+            Global.times[i - 1] = PlayerPrefs.GetInt("ls" + i.ToString());
+        }
     }
     private void Update()
     {

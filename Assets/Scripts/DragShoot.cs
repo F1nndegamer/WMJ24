@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class DragAndShoot : MonoBehaviour
 {
@@ -95,3 +95,4 @@ public class DragAndShoot : MonoBehaviour
         Destroy(arrowHead.gameObject, 0.1f);
     }
 }
+*/

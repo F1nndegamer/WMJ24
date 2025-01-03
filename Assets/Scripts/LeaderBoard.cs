@@ -10,20 +10,16 @@ namespace LeaderboardCreatorDemo
         [SerializeField] private GameObject dataPrefab;
         [SerializeField] private Transform parent;
         public ScrollRect rectA;
+        private int scorea;
 
         private void Start()
         {
-            if (Global.time > PlayerPrefs.GetInt("best") && PlayerPrefs.GetInt("startlevel") <= 1)
+            scorea = 0;
+            for (int i = 0; i < Global.times.Length; i++)
             {
-                UploadEntry();
-                PlayerPrefs.SetInt("best", Global.time); 
-                PlayerPrefs.Save();
-                Global.time = 0;
+                scorea += Global.times[i];
             }
-            else
-            {
-                LoadEntries();
-            }
+            UploadEntry();
         }
 
         private void LoadEntries()
@@ -49,7 +45,7 @@ namespace LeaderboardCreatorDemo
 
         public void UploadEntry()
         {
-            Leaderboards.WMJ24.UploadNewEntry(PlayerPrefs.GetString("name"), Global.time, isSuccessful =>
+            Leaderboards.WMJ24.UploadNewEntry(PlayerPrefs.GetString("name"), scorea, isSuccessful =>
             {
                 if (isSuccessful)
                     LoadEntries();

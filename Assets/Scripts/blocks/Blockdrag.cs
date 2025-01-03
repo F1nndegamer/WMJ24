@@ -5,12 +5,12 @@ using UnityEngine;
 public class BlockDrag : MonoBehaviour
 {
     public Vector3 offset;
-    private float zCoordinate;
     public bool isColliding;
     public bool isDragging;
     private bool willdestroy;
     public bool canMove;
     public bool SimStarted;
+    public bool perm = false;
     [SerializeField] float PlaceSpeed = 0.9f;
     private Vector3 targetPos;
     public float targetScale;
@@ -22,17 +22,20 @@ public class BlockDrag : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        if (Input.GetMouseButton(0))
+        if (!PlayerScript.Instance.SimilationStarted)
         {
-            zCoordinate = Camera.main.WorldToScreenPoint(transform.position).z;
-            offset = transform.position - GetMouseWorldPosition();
-            isDragging = true;
+            if (Input.GetMouseButtonDown(1) && canMove)
+            {
+                Delete();
+                Debug.Log("RMB");
+            }
+            if (Input.GetMouseButtonDown(0))
+            {
+                offset = transform.position - GetMouseWorldPosition();
+                isDragging = true;
+                Debug.Log("LMB");
+            }
         }
-        else if (Input.GetMouseButton(1))
-        {
-            delete();
-        }
-
     }
     private void Update()
     {
@@ -42,13 +45,15 @@ public class BlockDrag : MonoBehaviour
         }
         else
         {
-            canMove = true;
+            if (!perm)
+            {
+                canMove = true;
+            }
         }
-
         if (isDragging && canMove)
         {
             targetPos = GetMouseWorldPosition() + offset;
-            transform.position = VectorFixedLerp(transform.position, targetPos, PlaceSpeed);
+            transform.position = VectorFixedLerp(transform.position, new Vector3(targetPos.x, targetPos.y, 0), PlaceSpeed);
         }
     }
     public void Delete()
@@ -57,6 +62,7 @@ public class BlockDrag : MonoBehaviour
     }
     private IEnumerator delete()
     {
+        if (!canMove) { yield break; }
         transform.tag = "Untagged";
         while (transform.localScale.x > 0)
         {
@@ -121,7 +127,8 @@ public class BlockDrag : MonoBehaviour
 
     Vector3 GetMouseWorldPosition()
     {
-        Vector3 mouseScreenPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, zCoordinate);
-        return Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+        Vector3 mouseScreenPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
+        Vector3 pointofreturn = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+        return new Vector3(pointofreturn.x, pointofreturn.y, 0);
     }
 }

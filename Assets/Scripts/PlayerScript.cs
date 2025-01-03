@@ -14,7 +14,7 @@ public class PlayerScript : MonoBehaviour
     public float dragCoefficient = 0.05f;
     public float maxVelocity = 7f;
     public Vector3 velocity = Vector3.zero;
-    private Vector3 acceleration = Vector3.zero;
+    public Vector3 acceleration = Vector3.zero;
     public GameObject[] attractors;
     public GameObject[] repellers;
     [SerializeField] private SpriteRenderer north;
@@ -38,6 +38,8 @@ public class PlayerScript : MonoBehaviour
     public Light2D mlight;
     public Color red, blue;
     private bool paused = false;
+    private float arrow_dir = 0; private float arrow_scale = 0;
+    private int lastTotalTime = 0; private int c_level = 1;
     public static string IntToTimeString(int timeInMilliseconds)
     {
         System.TimeSpan timeSpan = System.TimeSpan.FromMilliseconds(timeInMilliseconds);
@@ -60,7 +62,7 @@ public class PlayerScript : MonoBehaviour
         }
         if (PlayerPrefs.GetInt("startlevel") == 1)
         {
-            totalTime.text = IntToTimeString(Global.time + timeSpentThisLevel);
+            totalTime.text = IntToTimeString(lastTotalTime + timeSpentThisLevel);
             thisTime.text = IntToTimeString(timeSpentThisLevel);
         }
         else
@@ -87,12 +89,15 @@ public class PlayerScript : MonoBehaviour
         north.color = new Color(1, 1, 1, Mathf.Lerp(north.color.a, RedPole ? 0 : 1, 0.3f));
         float t = north.color.a;
         mlight.color = Color.Lerp(blue, red, t);
-        Vector2 vel = acceleration;
+        Vector2 vel = new Vector2();
+        vel.x = acceleration.x; vel.y = acceleration.y;
         float direction = Mathf.Atan2(vel.y, vel.x);
         float mag = vel.magnitude;
         Vector3 l = arrow.transform.localScale;
-        arrow.transform.localScale = new Vector3(mag * sf, l.y, l.z);
-        arrow.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, rf * direction + ro));
+        arrow_scale = l.x;
+        arrow_dir = arrow.transform.localRotation.eulerAngles.z;
+        arrow.transform.localScale = new Vector3(Mathf.Lerp(arrow_scale, mag * sf, Time.unscaledDeltaTime * 8f), l.y, l.z);
+        arrow.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, Mathf.LerpAngle(arrow_dir, rf * direction + ro, Time.unscaledDeltaTime * 8f)));
     }
     void Awake()
     {
@@ -114,6 +119,8 @@ public class PlayerScript : MonoBehaviour
         loseS.SetBool("show", false);
         acceleration = Vector2.zero;
         velocity = Vector2.zero;
+        SimilationStarted = false;
+        paused = false;
         Time.timeScale = 1f;
     }
     public IEnumerator moveback()
@@ -123,6 +130,7 @@ public class PlayerScript : MonoBehaviour
             transform.position = VectorFixedLerp(transform.position, startPos, 30);
             yield return null;
         }
+        timeSpentThisLevel = 0;
         transform.position = startPos;
     }
     float FixedLerp(float a, float b, float decay)
@@ -136,6 +144,7 @@ public class PlayerScript : MonoBehaviour
     }
     void Start()
     {
+        Camera.main.gameObject.transform.position -= new Vector3(0, 0, 290);
         startPos = transform.position;
     }
     public void DeleteMagnets()
@@ -153,7 +162,10 @@ public class PlayerScript : MonoBehaviour
         StartCoroutine(moveback());
         velocity = Vector2.zero;
         SimilationStarted = false;
+        timeSpentThisLevel = 0;
+        paused = false;
         acceleration = Vector2.zero;
+        timeSpentThisLevel = 0;
         velocity = Vector2.zero;
         Time.timeScale = 1f;
         Attractor = null;
@@ -162,7 +174,12 @@ public class PlayerScript : MonoBehaviour
     private void StartTime()
     {
         Time.timeScale = 1f;
-        PlayerPrefs.SetInt("lastlevel", Int32.Parse(SceneManager.GetActiveScene().name.Substring(5)));
+        c_level = Int32.Parse(SceneManager.GetActiveScene().name.Substring(5));
+        for(int i = 0; i < c_level; i++){
+            lastTotalTime += Global.times[i];
+            Debug.Log(Global.times[i]);
+        }
+        PlayerPrefs.SetInt("lastlevel", c_level);
         PlayerPrefs.Save();
     }
     public void fullscreenfunction()
@@ -180,7 +197,7 @@ public class PlayerScript : MonoBehaviour
     public void SimStarted()
     {
         SimilationStarted = true;
-        acceleration = Vector2.zero;
+        paused = false;
         velocity = Vector2.zero;
         UpdateMagnets();
     }
@@ -189,7 +206,6 @@ public class PlayerScript : MonoBehaviour
         if (!SimilationStarted)
         {
             SimilationStarted = true;
-            acceleration = Vector2.zero;
             velocity = Vector2.zero;
         }
         else
@@ -201,6 +217,7 @@ public class PlayerScript : MonoBehaviour
     public void SimStop()
     {
         SimilationStarted = false;
+        paused = false;
         acceleration = Vector2.zero;
         velocity = Vector2.zero;
         UpdateMagnets();
@@ -220,7 +237,7 @@ public class PlayerScript : MonoBehaviour
     {
         Attractor = GameObject.FindGameObjectsWithTag("Attractor");
         Repeller = GameObject.FindGameObjectsWithTag("Repeller");
-        playButton.sprite = SimilationStarted ? pause : play;
+        playButton.sprite = (SimilationStarted && !paused) ? pause : play;
     }
     private void AttractOrRepelObjects(bool move)
     {
@@ -240,16 +257,13 @@ public class PlayerScript : MonoBehaviour
         {
             foreach (GameObject attractor in attractors)
             {
-                BlockDrag blockDrag = attractor.GetComponent<BlockDrag>();
-                if (blockDrag != null)
+                float distanceToAttractor = Vector2.Distance(transform.position, attractor.transform.position);
+                if (distanceToAttractor <= interactionRange && distanceToAttractor > minimumDistance)
                 {
-                    float distanceToAttractor = Vector3.Distance(transform.position, attractor.transform.position);
-                    if (distanceToAttractor <= interactionRange && distanceToAttractor > minimumDistance)
-                    {
-                        Vector3 directionToAttractor = (attractor.transform.position - transform.position).normalized;
-                        float forceMultiplier = Mathf.Lerp(1f, 0.5f, distanceToAttractor / interactionRange);
-                        attractionDirection += directionToAttractor * forceMultiplier / Mathf.Max(distanceToAttractor, 1f);
-                    }
+                    Vector3 directionToAttractor = (attractor.transform.position - transform.position).normalized;
+                    directionToAttractor.z = 0;
+                    float forceMultiplier = Mathf.Lerp(1f, 0.5f, distanceToAttractor / interactionRange);
+                    attractionDirection += directionToAttractor * forceMultiplier / Mathf.Max(distanceToAttractor, 1f);
 
                 }
             }
@@ -259,26 +273,18 @@ public class PlayerScript : MonoBehaviour
         {
             foreach (GameObject repeller in repellers)
             {
-                BlockDrag blockDrag = repeller.GetComponent<BlockDrag>();
-                if (blockDrag != null)
+                float distanceToRepeller = Vector2.Distance(transform.position, repeller.transform.position);
+                if (distanceToRepeller <= interactionRange && distanceToRepeller > minimumDistance)
                 {
-                    float distanceToRepeller = Vector3.Distance(transform.position, repeller.transform.position);
-                    if (distanceToRepeller <= interactionRange && distanceToRepeller > minimumDistance)
-                    {
-                        Vector3 directionToRepeller = (transform.position - repeller.transform.position).normalized;
-                        float forceMultiplier = Mathf.Lerp(1f, 0.3f, distanceToRepeller / interactionRange);
-                        repulsionDirection += directionToRepeller * forceMultiplier / Mathf.Max(distanceToRepeller, 1f);
-                    }
+                    Vector3 directionToRepeller = (transform.position - repeller.transform.position).normalized;
+                    directionToRepeller.z = 0;
+                    float forceMultiplier = Mathf.Lerp(1f, 0.3f, distanceToRepeller / interactionRange);
+                    repulsionDirection += directionToRepeller * forceMultiplier / Mathf.Max(distanceToRepeller, 1f);
                 }
+
             }
         }
-        Vector3 force = (attractionDirection * attractionSpeed) + (repulsionDirection * repulsionForce);
-        ApplyForce(force);
-    }
-
-    public void ApplyForce(Vector3 force)
-    {
-        acceleration = force;
+        acceleration = (attractionDirection * attractionSpeed) + (repulsionDirection * repulsionForce);
     }
 
     private void ApplyMovement(bool move)
@@ -286,6 +292,7 @@ public class PlayerScript : MonoBehaviour
         velocity += acceleration * Time.deltaTime;
         velocity *= 1 - dragCoefficient * Time.deltaTime;
         velocity = Vector3.ClampMagnitude(velocity, maxVelocity);
+        velocity.z = 0;
         if (move)
         {
             transform.position += velocity * Time.deltaTime;

@@ -34,7 +34,7 @@ public class nameSuggest : MonoBehaviour
     }
     public void UploadEntry(string _name)
     {
-        Leaderboards.NameSuggest.UploadNewEntry(PlayerPrefs.GetString("name"), Global.time, _name, isSuccessful =>
+        Leaderboards.NameSuggest.UploadNewEntry(PlayerPrefs.GetString("name"), Global.times[0], _name, isSuccessful =>
         {
             if (isSuccessful)
                 Debug.Log("Uploaded");

@@ -14,6 +14,7 @@ public class PlayerDeath : MonoBehaviour
     [SerializeField] private GameObject skip;
 
     [SerializeField] private CanvasGroup overlay;
+    private int c_level;
     public static PlayerDeath Instance;
     private bool loadingSmth = false;
     public string MainMenuName;
@@ -32,6 +33,7 @@ public class PlayerDeath : MonoBehaviour
         }
         overlay.alpha = 0;
         overlay.gameObject.SetActive(false);
+        c_level = Int32.Parse(SceneManager.GetActiveScene().name.Substring(5));
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -42,6 +44,10 @@ public class PlayerDeath : MonoBehaviour
 
             if (SFXManager.instance != null)
                 SFXManager.instance.PlaySFX("Burn");
+
+            Vector3 pos = collision.contacts[0].point;
+            ParticleSystem system = Instantiate(Resources.Load("Explode") as GameObject, pos, Quaternion.identity).GetComponent<ParticleSystem>();
+            system.Play();
         }
         if (collision.gameObject.CompareTag("Border"))
         {
@@ -49,6 +55,10 @@ public class PlayerDeath : MonoBehaviour
 
             if (SFXManager.instance != null)
                 SFXManager.instance.PlaySFX("Bounds");
+
+            Vector3 pos = collision.contacts[0].point;
+            ParticleSystem system = Instantiate(Resources.Load("Explode") as GameObject, pos, Quaternion.identity).GetComponent<ParticleSystem>();
+            system.Play();
         }
     }
 
@@ -63,33 +73,37 @@ public class PlayerDeath : MonoBehaviour
         deathScreen.SetActive(true);
         deathScreen.GetComponent<Animator>().SetBool("show", true);
         int currentLevel = Int32.Parse(SceneManager.GetActiveScene().name.Substring(5));
-        Debug.Log(currentLevel);
         Global.attempts[currentLevel - 1]++;
         if (Global.attempts[currentLevel - 1] > 2)
         {
             skip.SetActive(true);
         }
     }
-    public void NextLevel()
+    public void NextLevel(bool skip)
     {
         int currentLevel;
         string levelName = SceneManager.GetActiveScene().name;
         currentLevel = Int32.Parse(levelName.Substring(5));
-        Debug.Log(currentLevel);
         if (PlayerPrefs.GetInt("levels") < currentLevel + 1)
         {
             PlayerPrefs.SetInt("levels", currentLevel + 1);
             PlayerPrefs.Save();
         }
-        if (currentLevel < 8)
+        if (currentLevel < Global.times.Length)
         {
-            Global.time += Mathf.FloorToInt(GetComponent<PlayerScript>().timeSpentThisLevel);
+            if (skip) { Global.times[c_level - 1] += 30000; }
+            Global.times[c_level - 1] += Mathf.FloorToInt(GetComponent<PlayerScript>().timeSpentThisLevel);
             loadLevel("Level" + (currentLevel + 1).ToString());
+            PlayerPrefs.SetInt("ls" + c_level.ToString(), Global.times[c_level - 1]);
+            PlayerPrefs.Save();
         }
         else
         {
-            Global.time += Mathf.FloorToInt(GetComponent<PlayerScript>().timeSpentThisLevel);
+            if (skip) { Global.times[c_level - 1] += 30000; }
+            Global.times[c_level - 1] += Mathf.FloorToInt(GetComponent<PlayerScript>().timeSpentThisLevel);
             loadLevel("Leaderboard");
+            PlayerPrefs.SetInt("ls" + c_level.ToString(), Global.times[c_level - 1]);
+            PlayerPrefs.Save();
         }
         if (Int32.Parse(SceneManager.GetActiveScene().name.Substring(5)) == 8)
         {
