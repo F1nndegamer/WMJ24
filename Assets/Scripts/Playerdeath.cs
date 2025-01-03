@@ -94,7 +94,9 @@ public class PlayerDeath : MonoBehaviour
     }
     public void Retry()
     {
-        loadLevel(SceneManager.GetActiveScene().name);
+        transform.position = PlayerScript.Instance.startPos;
+        GetComponent<PlayerScript>().velocity = Vector2.zero;
+        PlayerScript.Instance.SimilationStarted = false;
         Time.timeScale = 1f;
     }
     public void BackToMenu()

@@ -71,6 +71,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Restart"",
+                    ""type"": ""Button"",
+                    ""id"": ""43b35361-efe8-48ce-a5a1-6d8036ebaf96"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -128,6 +137,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b763c07c-6ba3-4eea-9bf3-f12f826255ac"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Restart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -141,6 +161,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Default_Flip = m_Default.FindAction("Flip", throwIfNotFound: true);
         m_Default_Play = m_Default.FindAction("Play", throwIfNotFound: true);
         m_Default_Pause = m_Default.FindAction("Pause", throwIfNotFound: true);
+        m_Default_Restart = m_Default.FindAction("Restart", throwIfNotFound: true);
     }
 
     ~@InputActions()
@@ -212,6 +233,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Default_Flip;
     private readonly InputAction m_Default_Play;
     private readonly InputAction m_Default_Pause;
+    private readonly InputAction m_Default_Restart;
     public struct DefaultActions
     {
         private @InputActions m_Wrapper;
@@ -221,6 +243,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Flip => m_Wrapper.m_Default_Flip;
         public InputAction @Play => m_Wrapper.m_Default_Play;
         public InputAction @Pause => m_Wrapper.m_Default_Pause;
+        public InputAction @Restart => m_Wrapper.m_Default_Restart;
         public InputActionMap Get() { return m_Wrapper.m_Default; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -245,6 +268,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @Restart.started += instance.OnRestart;
+            @Restart.performed += instance.OnRestart;
+            @Restart.canceled += instance.OnRestart;
         }
 
         private void UnregisterCallbacks(IDefaultActions instance)
@@ -264,6 +290,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @Restart.started -= instance.OnRestart;
+            @Restart.performed -= instance.OnRestart;
+            @Restart.canceled -= instance.OnRestart;
         }
 
         public void RemoveCallbacks(IDefaultActions instance)
@@ -288,5 +317,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnFlip(InputAction.CallbackContext context);
         void OnPlay(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnRestart(InputAction.CallbackContext context);
     }
 }
