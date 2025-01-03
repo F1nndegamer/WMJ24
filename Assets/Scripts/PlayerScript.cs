@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class PlayerScript : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class PlayerScript : MonoBehaviour
     public InputActions inputActions;
     public static InputActions.DefaultActions input;
 
+
     public bool SimilationStarted;
     public bool RedPole;
     public static PlayerScript Instance;
@@ -28,6 +30,9 @@ public class PlayerScript : MonoBehaviour
     private GameObject[] Attractor, Repeller;
     [SerializeField] GameObject arrow;
     public float sf, rf, ro; //sf == scaling factor, rf == rotation factor
+    public Sprite play, pause;
+    public Image playButton;
+    public Animator winS, loseS;
 
     public static string IntToTimeString(int timeInMilliseconds)
     {
@@ -45,6 +50,10 @@ public class PlayerScript : MonoBehaviour
 
     private void Update()
     {
+        if (!Global.paused)
+        {
+            Time.timeScale = 1f;
+        }
         if (PlayerPrefs.GetInt("startlevel") == 1)
         {
             totalTime.text = IntToTimeString(Global.time + timeSpentThisLevel);
@@ -84,19 +93,18 @@ public class PlayerScript : MonoBehaviour
         inputActions = new InputActions();
         input = inputActions.Default;
         input.Flip.performed += ctx => ChangePole();
-        input.Play.performed += ctx => SimStarted();
+        input.Play.performed += ctx => SimToggle();
         input.Fullscreen.performed += ctx => fullscreenfunction();
         input.Pause.performed += ctx => Pause.Instance.PauseToggle();
         input.Restart.performed += ctx => GetComponent<PlayerDeath>().Retry();
-        PlayerPrefs.SetInt("lastlevel", Int32.Parse(SceneManager.GetActiveScene().name.Substring(5)));
-        PlayerPrefs.Save();
-        if (Int32.Parse(SceneManager.GetActiveScene().name.Substring(5)) == 8)
-        {
-            PlayerPrefs.SetInt("startlevel", 0);
-            PlayerPrefs.Save();
-        }
-        Invoke("StartTime", 0.6f);
+        Invoke("StartTime", 1.1f);
         InvokeRepeating("UpdateMagnets", 0.1f, 1f);
+    }
+    public void Retry()
+    {
+        winS.SetBool("show", false);
+        loseS.SetBool("show", false);
+        Time.timeScale = 1f;
     }
     void Start()
     {
@@ -124,6 +132,13 @@ public class PlayerScript : MonoBehaviour
     private void StartTime()
     {
         Time.timeScale = 1f;
+        PlayerPrefs.SetInt("lastlevel", Int32.Parse(SceneManager.GetActiveScene().name.Substring(5)));
+        PlayerPrefs.Save();
+        if (Int32.Parse(SceneManager.GetActiveScene().name.Substring(5)) == 8)
+        {
+            PlayerPrefs.SetInt("startlevel", 0);
+            PlayerPrefs.Save();
+        }
     }
     public void fullscreenfunction()
     {
@@ -140,10 +155,17 @@ public class PlayerScript : MonoBehaviour
     public void SimStarted()
     {
         SimilationStarted = true;
+        UpdateMagnets();
+    }
+    public void SimToggle()
+    {
+        SimilationStarted = !SimilationStarted;
+        UpdateMagnets();
     }
     public void SimStop()
     {
         SimilationStarted = false;
+        UpdateMagnets();
     }
     public void ChangePole()
     {
@@ -160,6 +182,7 @@ public class PlayerScript : MonoBehaviour
     {
         Attractor = GameObject.FindGameObjectsWithTag("Attractor");
         Repeller = GameObject.FindGameObjectsWithTag("Repeller");
+        playButton.sprite = SimilationStarted ? pause : play;
     }
     private void AttractOrRepelObjects(bool move)
     {

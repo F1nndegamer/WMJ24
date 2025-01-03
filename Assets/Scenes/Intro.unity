@@ -589,7 +589,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -598,10 +598,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 495.0495
+  MaxDistance: 500000
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1969,17 +1969,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxClips:
   - name: Win
-    clip: {fileID: 8300000, guid: 2a4a15cd6a482b74a9df3d8c5a80f811, type: 3}
+    clip: {fileID: 8300000, guid: d7997d800e3da4b468fca9ef3d35846f, type: 3}
   - name: Trans
-    clip: {fileID: 8300000, guid: 1aced01011ecdbb46bddbd3d184a5938, type: 3}
+    clip: {fileID: 8300000, guid: 3636def339baf634e84e8a6ccf2c2428, type: 3}
   - name: Click
-    clip: {fileID: 8300000, guid: 272566781e772ba41be55875e3d0995d, type: 3}
+    clip: {fileID: 8300000, guid: b80e0bd99a0385041a40220cb0ed8537, type: 3}
   - name: Place
     clip: {fileID: 8300000, guid: 298f745a9409c2849b3c1d7f8f827e29, type: 3}
   - name: Bounds
-    clip: {fileID: 8300000, guid: f9bc92c6c89192c43838ca5c298c9bc1, type: 3}
+    clip: {fileID: 8300000, guid: 60e9d7336bc3860449b22c67308be4c9, type: 3}
   - name: Burn
-    clip: {fileID: 8300000, guid: 60e604d057f14e54c948e7320d5d0ac4, type: 3}
+    clip: {fileID: 8300000, guid: 32448d695bbe7e54c9496da7dd9b0452, type: 3}
+  - name: Click2
+    clip: {fileID: 8300000, guid: e07154b2ccb56054bb44cd7a3ac51ecc, type: 3}
   audioSource: {fileID: 149099435}
 --- !u!82 &1629062154
 AudioSource:

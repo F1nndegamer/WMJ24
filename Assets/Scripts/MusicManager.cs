@@ -48,7 +48,11 @@ public class SFXManager : MonoBehaviour
     }
     public void PlaySFX(string clipName)
     {
-        if (audioSource == null || sfxDictionary == null || !sfxDictionary.ContainsKey(clipName)) return;
+        if (audioSource == null || sfxDictionary == null || !sfxDictionary.ContainsKey(clipName))
+        {
+            Debug.Log("Cant play that");
+            return;
+        }
 
         audioSource.PlayOneShot(sfxDictionary[clipName]);
     }

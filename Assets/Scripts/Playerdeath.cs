@@ -98,6 +98,7 @@ public class PlayerDeath : MonoBehaviour
         GetComponent<PlayerScript>().velocity = Vector2.zero;
         PlayerScript.Instance.SimilationStarted = false;
         Time.timeScale = 1f;
+        PlayerScript.Instance.Retry();
     }
     public void BackToMenu()
     {

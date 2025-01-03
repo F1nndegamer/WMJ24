@@ -16,12 +16,14 @@ public class Pause : MonoBehaviour
         if (Paused)
         {
             Paused = false;
+            Global.paused = false;
             PauseScreen.GetComponent<Animator>().SetBool("show", false);
             Time.timeScale = 1f;
         }
         else
         {
             Paused = true;
+            Global.paused = true;
             PauseScreen.GetComponent<Animator>().SetBool("show", true);
             Time.timeScale = 0f;
         }

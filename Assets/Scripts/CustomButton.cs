@@ -23,7 +23,10 @@ public class TransferButtonEvents : MonoBehaviour, IPointerDownHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         if (button.interactable)
+        {
             StartCoroutine(InvokeIt());
+            SFXManager.instance.PlaySFX("Click2");
+        }
     }
     public IEnumerator InvokeIt()
     {
