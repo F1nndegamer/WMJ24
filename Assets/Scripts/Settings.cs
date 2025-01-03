@@ -1,14 +1,16 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Settings : MonoBehaviour
 {
-    [SerializeField] private Toggle fullTogg, lightTogg;
+    [SerializeField] private Toggle fullTogg;
     [SerializeField] private Slider volumeSlider;
     public bool fullScreen = false, lightMode = false;
     [Range(0, 1)]
     public float volume = 1f;
+    public CanvasGroup lightModee; public AudioSource lm;
 
     [SerializeField] private GameObject invertObj;
     private void Start()
@@ -29,13 +31,11 @@ public class Settings : MonoBehaviour
     void Load()
     {
         Screen.fullScreen = fullTogg.isOn = fullScreen = PlayerPrefs.GetInt("full") == 1;
-        invertObj.SetActive(lightTogg.isOn = lightMode = PlayerPrefs.GetInt("light") == 1);
         AudioListener.volume = volumeSlider.value = volume = PlayerPrefs.GetFloat("volume");
     }
     void Save()
     {
         PlayerPrefs.SetInt("full", fullTogg.isOn ? 1 : 0);
-        PlayerPrefs.SetInt("light", lightTogg.isOn ? 1 : 0);
         PlayerPrefs.SetFloat("volume", volumeSlider.value);
     }
     public void SetVol(float vol)
@@ -50,7 +50,16 @@ public class Settings : MonoBehaviour
     }
     public void SetLight(bool val)
     {
-        lightMode = val;
-        invertObj.SetActive(val);
+        StartCoroutine(llm());
+    }
+    private IEnumerator llm(){
+        lm.Play();
+        lightModee.alpha = 1;
+        yield return new WaitForSecondsRealtime(2f);
+        for(float a = 1; a > 0; a -= Time.deltaTime / 2f){
+            lightModee.alpha = a;
+            yield return null;
+        }
+        lightModee.alpha = 0;
     }
 }

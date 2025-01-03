@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.Universal;
 public class PlayerScript : MonoBehaviour
 {
     public float attractionSpeed = 8f;
@@ -33,7 +34,8 @@ public class PlayerScript : MonoBehaviour
     public Sprite play, pause;
     public Image playButton;
     public Animator winS, loseS;
-
+    public Light2D mlight;
+    public Color red, blue;
     public static string IntToTimeString(int timeInMilliseconds)
     {
         System.TimeSpan timeSpan = System.TimeSpan.FromMilliseconds(timeInMilliseconds);
@@ -67,7 +69,7 @@ public class PlayerScript : MonoBehaviour
         if (SimilationStarted)
         {
             AttractOrRepelObjects(true);
-            ApplyMovement();
+            ApplyMovement(true);
             elapsedTime += Time.deltaTime * 1000f;
             if (elapsedTime >= 1f)
             {
@@ -78,8 +80,11 @@ public class PlayerScript : MonoBehaviour
         else
         {
             AttractOrRepelObjects(false);
+            ApplyMovement(false);
         }
         north.color = new Color(1, 1, 1, Mathf.Lerp(north.color.a, RedPole ? 0 : 1, 0.3f));
+        float t = north.color.a;
+        mlight.color = Color.Lerp(blue, red, t);
         Vector2 vel = velocity;
         float direction = Mathf.Atan2(vel.y, vel.x);
         float mag = vel.magnitude;
@@ -90,6 +95,7 @@ public class PlayerScript : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        maxVelocity = 20f;
         inputActions = new InputActions();
         input = inputActions.Default;
         input.Flip.performed += ctx => ChangePole();
@@ -104,6 +110,8 @@ public class PlayerScript : MonoBehaviour
     {
         winS.SetBool("show", false);
         loseS.SetBool("show", false);
+        acceleration = Vector2.zero;
+        velocity = Vector2.zero;
         Time.timeScale = 1f;
     }
     void Start()
@@ -134,11 +142,6 @@ public class PlayerScript : MonoBehaviour
         Time.timeScale = 1f;
         PlayerPrefs.SetInt("lastlevel", Int32.Parse(SceneManager.GetActiveScene().name.Substring(5)));
         PlayerPrefs.Save();
-        if (Int32.Parse(SceneManager.GetActiveScene().name.Substring(5)) == 8)
-        {
-            PlayerPrefs.SetInt("startlevel", 0);
-            PlayerPrefs.Save();
-        }
     }
     public void fullscreenfunction()
     {
@@ -155,11 +158,18 @@ public class PlayerScript : MonoBehaviour
     public void SimStarted()
     {
         SimilationStarted = true;
+        acceleration = Vector2.zero;
+        velocity = Vector2.zero;
         UpdateMagnets();
     }
     public void SimToggle()
     {
         SimilationStarted = !SimilationStarted;
+        if (SimilationStarted)
+        {
+            acceleration = Vector2.zero;
+            velocity = Vector2.zero;
+        }
         UpdateMagnets();
     }
     public void SimStop()
@@ -235,10 +245,7 @@ public class PlayerScript : MonoBehaviour
             }
         }
         Vector3 force = (attractionDirection * attractionSpeed) + (repulsionDirection * repulsionForce);
-        if (move)
-        {
-            ApplyForce(force);
-        }
+        ApplyForce(force);
     }
 
     public void ApplyForce(Vector3 force)
@@ -246,12 +253,15 @@ public class PlayerScript : MonoBehaviour
         acceleration = force;
     }
 
-    private void ApplyMovement()
+    private void ApplyMovement(bool move)
     {
         velocity += acceleration * Time.deltaTime;
         velocity *= 1 - dragCoefficient * Time.deltaTime;
         velocity = Vector3.ClampMagnitude(velocity, maxVelocity);
-        transform.position += velocity * Time.deltaTime;
+        if (move)
+        {
+            transform.position += velocity * Time.deltaTime;
+        }
     }
 
     private void OnDrawGizmos()

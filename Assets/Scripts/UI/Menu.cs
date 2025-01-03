@@ -18,7 +18,7 @@ public class Menu : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            SFXManager.instance.PlaySFX("Click");
+            SFXManager.instance?.PlaySFX("Click");
         }
     }
     private void Start()

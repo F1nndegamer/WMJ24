@@ -91,6 +91,11 @@ public class PlayerDeath : MonoBehaviour
             Global.time += Mathf.FloorToInt(GetComponent<PlayerScript>().timeSpentThisLevel);
             loadLevel("Leaderboard");
         }
+        if (Int32.Parse(SceneManager.GetActiveScene().name.Substring(5)) == 8)
+        {
+            PlayerPrefs.SetInt("startlevel", 0);
+            PlayerPrefs.Save();
+        }
     }
     public void Retry()
     {
