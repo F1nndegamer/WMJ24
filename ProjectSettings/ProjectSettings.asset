@@ -8,12 +8,12 @@ PlayerSettings:
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 2
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: Alimad Corporations
-  productName: PleaseSuggestAName
+  companyName: F1nndegamer
+  productName: MagnetMadness
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
@@ -140,7 +140,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 1.1
+  bundleVersion: 1.1.6
   preloadedAssets:
   - {fileID: 11400000, guid: c9f6c095d9ceb9648ab957dcbfb1b053, type: 2}
   metroInputSource: 0
@@ -924,7 +924,7 @@ PlayerSettings:
   cloudProjectId: 0a3d4d12-cf3b-465b-850f-0b36e563a0ef
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: My project (1) 2024-12-22_14-01-38
+  projectName: magnet madness
   organizationId: f1nndegamer
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
