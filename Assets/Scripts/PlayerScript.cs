@@ -253,6 +253,7 @@ public class PlayerScript : MonoBehaviour
         {
             foreach (GameObject attractor in attractors)
             {
+                if (attractor == null) continue;
                 float distanceToAttractor = Vector2.Distance(transform.position, attractor.transform.position);
                 if (distanceToAttractor <= interactionRange && distanceToAttractor > minimumDistance)
                 {
@@ -269,6 +270,7 @@ public class PlayerScript : MonoBehaviour
         {
             foreach (GameObject repeller in repellers)
             {
+                if(repeller == null) continue;
                 float distanceToRepeller = Vector2.Distance(transform.position, repeller.transform.position);
                 if (distanceToRepeller <= interactionRange && distanceToRepeller > minimumDistance)
                 {
