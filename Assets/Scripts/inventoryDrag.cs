@@ -7,15 +7,23 @@ public class InventoryDrag : MonoBehaviour
     private Vector3 offset;
     private bool isDragging;
     public GameObject clone;
-    void Update(){
-        if(isDragging && PlayerScript.Instance.SimilationStarted){
+    public static InventoryDrag instance;
+    void Start()
+    {
+        instance = this;
+    }
+    void Update()
+    {
+        if (isDragging && PlayerScript.Instance.SimilationStarted)
+        {
             OnMouseUp();
         }
     }
     private void OnMouseDown()
     {
-        if (!PlayerScript.Instance.SimilationStarted)
+        if (!PlayerScript.Instance.SimilationStarted && PlayerScript.Instance.maxMagnets > dragmanager.instance.Magnetsplaced)
         {
+            dragmanager.instance.Magnetsplaced++;
             clone = Instantiate(prefab, transform.position, transform.rotation);
             clone.transform.position = new Vector3(clone.transform.position.x, clone.transform.position.y, 0);
             offset = transform.position - GetMouseWorldPosition();
@@ -35,8 +43,16 @@ public class InventoryDrag : MonoBehaviour
     private void OnMouseUp()
     {
         isDragging = false;
+
         if (clone != null)
         {
+            BlockDrag blockDrag = clone.GetComponent<BlockDrag>();
+            if (blockDrag.willdestroy)
+            {
+                dragmanager.instance.Magnetsplaced -= 1;
+                Destroy(clone);
+                return;
+            }
             InventoryDrag clonedrag = clone.GetComponent<InventoryDrag>();
             Destroy(clonedrag);
             if (SFXManager.instance != null)
@@ -49,4 +65,5 @@ public class InventoryDrag : MonoBehaviour
         Vector3 pointofreturn = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
         return new Vector3(pointofreturn.x, pointofreturn.y, 0);
     }
+
 }

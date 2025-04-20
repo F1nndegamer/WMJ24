@@ -40,6 +40,7 @@ public class PlayerScript : MonoBehaviour
     private bool paused = false;
     private float arrow_dir = 0; private float arrow_scale = 0;
     private int lastTotalTime = 0; private int c_level = 1;
+    public int maxMagnets = 5; 
     public static string IntToTimeString(int timeInMilliseconds)
     {
         System.TimeSpan timeSpan = System.TimeSpan.FromMilliseconds(timeInMilliseconds);
@@ -163,6 +164,7 @@ public class PlayerScript : MonoBehaviour
         Time.timeScale = 1f;
         Attractor = null;
         Repeller = null;
+        dragmanager.instance.Magnetsplaced = 0;
     }
     private void StartTime()
     {
