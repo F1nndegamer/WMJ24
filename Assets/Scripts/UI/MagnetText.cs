@@ -6,10 +6,13 @@ public class MagnetText : MonoBehaviour
     public Color normal;
     public Color max;
 
-    private TextMeshPro text;
+    public TextMeshPro text;
+    public static MagnetText instance;
 
     void Awake()
+    
 {
+    instance =  this;
     text = GetComponentInChildren<TextMeshPro>();
 }
 
@@ -18,8 +21,11 @@ public class MagnetText : MonoBehaviour
     {
         int placed = dragmanager.instance.Magnetsplaced;
         int maxAllowed = PlayerScript.Instance.maxMagnets;
+        if (text.text != "completed" && text.text != "completed1")
 
+        {
         text.text = "Magnets " + placed + '/' + maxAllowed;
         text.color = placed == maxAllowed ? max : normal;
+        }
     }
 }

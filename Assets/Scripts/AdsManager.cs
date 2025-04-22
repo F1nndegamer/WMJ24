@@ -1,15 +1,17 @@
 using UnityEngine;
 using TMPro;
+using NUnit.Framework.Internal.Commands;
 public class AdsManager : MonoBehaviour
 {
 #if UNITY_ANDROID
-    string appKey = "21bfff3f5";
+    //string appKey = "21bfff3f5";
+    string appKey = "85460dcd";
 #elif UNITY_IPHONE
     string appKey = "";
 #else
     string appKey = "unexpected_platform";
 #endif
-
+    bool skip;
     void Start()
     {
         IronSource.Agent.validateIntegration();
@@ -59,8 +61,15 @@ public class AdsManager : MonoBehaviour
     {
         IronSource.Agent.loadRewardedVideo();
     }
-    public void ShowRewarded()
+    public void ShowRewarded(string reason)
     {
+        if(reason == "Skip")
+        {
+            skip = true;
+        }
+        else{
+            skip = false;
+        }
         if (IronSource.Agent.isRewardedVideoAvailable())
         {
             IronSource.Agent.showRewardedVideo();
@@ -98,6 +107,17 @@ public class AdsManager : MonoBehaviour
     void RewardedVideoOnAdRewardedEvent(IronSourcePlacement placement, IronSourceAdInfo adInfo)
     {
         Debug.Log("completed");
+        if(skip)
+        {
+            
+            MagnetText.instance.text.text = "completed";
+            PlayerDeath.Instance.NextLevel(true);
+        }
+        else
+        {
+            
+            MagnetText.instance.text.text = "completed1";
+        }
     }
     // The rewarded video ad was failed to show.
     void RewardedVideoOnAdShowFailedEvent(IronSourceError error, IronSourceAdInfo adInfo)
