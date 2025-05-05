@@ -20,7 +20,6 @@ public class AdsManager : MonoBehaviour
     void OnEnable()
     {
         IronSourceEvents.onSdkInitializationCompletedEvent += SDKInitialized;
-        //Add AdInfo Rewarded Video Events
         IronSourceRewardedVideoEvents.onAdOpenedEvent += RewardedVideoOnAdOpenedEvent;
         IronSourceRewardedVideoEvents.onAdClosedEvent += RewardedVideoOnAdClosedEvent;
         IronSourceRewardedVideoEvents.onAdAvailableEvent += RewardedVideoOnAdAvailable;
