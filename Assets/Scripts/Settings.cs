@@ -31,7 +31,7 @@ public class Settings : MonoBehaviour
     void Load()
     {
         Screen.fullScreen = fullTogg.isOn = fullScreen = PlayerPrefs.GetInt("full") == 1;
-        AudioListener.volume = volumeSlider.value = volume = PlayerPrefs.GetFloat("volume");
+        AudioListener.volume = volumeSlider.value = volume = PlayerPrefs.GetFloat("volume", 1);
     }
     void Save()
     {
@@ -52,11 +52,13 @@ public class Settings : MonoBehaviour
     {
         StartCoroutine(llm());
     }
-    private IEnumerator llm(){
+    private IEnumerator llm()
+    {
         lm.Play();
         lightModee.alpha = 1;
         yield return new WaitForSecondsRealtime(2f);
-        for(float a = 1; a > 0; a -= Time.deltaTime / 2f){
+        for (float a = 1; a > 0; a -= Time.deltaTime / 2f)
+        {
             lightModee.alpha = a;
             yield return null;
         }
