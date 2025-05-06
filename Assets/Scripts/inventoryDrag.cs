@@ -21,6 +21,23 @@ public class InventoryDrag : MonoBehaviour
     }
     private void OnMouseDown()
     {
+        float screenEdgeThreshold = 50f;
+
+        if (Input.touchCount > 0)
+        {
+            Vector2 touchPos = Input.GetTouch(0).position;
+
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(touchPos.x, touchPos.y, 0));
+            worldPos.z = 0;
+
+            Collider2D hit = Physics2D.OverlapPoint(worldPos);
+
+            bool isTouchNearEdge = touchPos.x < screenEdgeThreshold || touchPos.x > Screen.width - screenEdgeThreshold;
+
+            if (isTouchNearEdge && (hit == null || hit.gameObject != gameObject))
+                return;
+        }
+
         if (!PlayerScript.Instance.SimilationStarted && PlayerScript.Instance.maxMagnets > dragmanager.instance.Magnetsplaced)
         {
             dragmanager.instance.Magnetsplaced++;
@@ -29,8 +46,8 @@ public class InventoryDrag : MonoBehaviour
             offset = transform.position - GetMouseWorldPosition();
             isDragging = true;
         }
-
     }
+
 
     private void OnMouseDrag()
     {
