@@ -4,18 +4,20 @@ using UnityEngine.EventSystems;
 
 public class TMPLinkOpener : MonoBehaviour, IPointerClickHandler
 {
-    private TMP_Text textMeshPro;
+    public TextMeshProUGUI textMeshPro;
 
     void Awake()
     {
-        textMeshPro = GetComponent<TMP_Text>();
+        textMeshPro = GetComponent<TextMeshProUGUI>();
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        int linkIndex = TMP_TextUtilities.FindIntersectingLink(textMeshPro, Input.mousePosition, null);
+        Debug.Log("click");
+        int linkIndex = TMP_TextUtilities.FindIntersectingLink(textMeshPro, eventData.position, Camera.main);
         if (linkIndex != -1)
         {
+            Debug.Log("click1");
             TMP_LinkInfo linkInfo = textMeshPro.textInfo.linkInfo[linkIndex];
             string url = linkInfo.GetLinkID();
             Application.OpenURL(url);

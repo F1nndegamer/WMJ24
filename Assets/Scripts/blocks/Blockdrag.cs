@@ -69,6 +69,8 @@ public class BlockDrag : MonoBehaviour
             transform.localScale -= Vector3.one * Time.unscaledDeltaTime * 2.5f;
             yield return null;
         }
+
+        dragmanager.instance.Magnetsplaced -= 1;
         Destroy(gameObject);
         PlayerScript.Instance.UpdateMagnets();
     }

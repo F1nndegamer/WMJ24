@@ -164,7 +164,7 @@ public class PlayerScript : MonoBehaviour
         Time.timeScale = 1f;
         Attractor = null;
         Repeller = null;
-        dragmanager.instance.Magnetsplaced = 0;
+        
     }
     private void StartTime()
     {

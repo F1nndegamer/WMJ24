@@ -4,8 +4,8 @@ using NUnit.Framework.Internal.Commands;
 public class AdsManager : MonoBehaviour
 {
 #if UNITY_ANDROID
-    //string appKey = "21bfff3f5";
-    string appKey = "85460dcd";
+    string appKey = "21bfff3f5";
+    //string appKey = "85460dcd";
 #elif UNITY_IPHONE
     string appKey = "";
 #else
@@ -62,11 +62,12 @@ public class AdsManager : MonoBehaviour
     }
     public void ShowRewarded(string reason)
     {
-        if(reason == "Skip")
+        if (reason == "Skip")
         {
             skip = true;
         }
-        else{
+        else
+        {
             skip = false;
         }
         if (IronSource.Agent.isRewardedVideoAvailable())
@@ -106,15 +107,15 @@ public class AdsManager : MonoBehaviour
     void RewardedVideoOnAdRewardedEvent(IronSourcePlacement placement, IronSourceAdInfo adInfo)
     {
         Debug.Log("completed");
-        if(skip)
+        if (skip)
         {
-            
+
             MagnetText.instance.text.text = "completed";
             PlayerDeath.Instance.NextLevel(true);
         }
         else
         {
-            
+
             MagnetText.instance.text.text = "completed1";
         }
     }
