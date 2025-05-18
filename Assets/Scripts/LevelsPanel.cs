@@ -38,7 +38,13 @@ public class LevelsPanel : MonoBehaviour
                 button.ButtonUpdate();
                 button.n = i;
                 LevelButton.Difficulty difficulty = LevelButton.Difficulty.Easy;
-                if (difficulties[i - 1] == 1) { difficulty = LevelButton.Difficulty.Medium; } else if (difficulties[i - 1] == 2) { difficulty = LevelButton.Difficulty.Hard; }
+                if (i - 1 < difficulties.Length)
+                {
+                    if (difficulties[i - 1] == 1) { difficulty = LevelButton.Difficulty.Medium; }
+                    else if (difficulties[i - 1] == 2) { difficulty = LevelButton.Difficulty.Hard; }
+                }
+                button.difficulty = difficulty;
+
                 button.difficulty = difficulty;
             }
         }
@@ -47,6 +53,7 @@ public class LevelsPanel : MonoBehaviour
     {
         if (namee.text != "")
         {
+            Debug.Log(namee.text);
             PlayerPrefs.SetString("name", namee.text);
             PlayerPrefs.Save();
             nameSelect.SetActive(false);
