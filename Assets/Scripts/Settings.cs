@@ -13,8 +13,10 @@ public class Settings : MonoBehaviour
     public CanvasGroup lightModee; public AudioSource lm;
 
     [SerializeField] private GameObject invertObj;
+    public static Settings instance;
     private void Start()
     {
+        if (instance != null) instance = this;
         Load();
         InvokeRepeating("Check", 0.1f, 3);
     }
