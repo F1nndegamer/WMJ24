@@ -5326,18 +5326,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: f0d792b381e8e0342bd8df715db60c24, type: 3}
-    m_FontSize: 200
+    m_FontSize: 180
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 272
+    m_MinSize: 1
+    m_MaxSize: 300
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Performance
+  m_Text: Performance(WIP)
 --- !u!222 &1148687431
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5583,8 +5583,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1807071741}
         m_TargetAssemblyTypeName: Settings, Assembly-CSharp
-        m_MethodName: SetInstantTrigger
-        m_Mode: 0
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
