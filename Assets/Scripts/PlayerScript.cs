@@ -40,7 +40,9 @@ public class PlayerScript : MonoBehaviour
     private bool paused = false;
     private float arrow_dir = 0; private float arrow_scale = 0;
     private int lastTotalTime = 0; private int c_level = 1;
-    public int maxMagnets = 5; 
+    public int maxMagnets = 5;
+    public bool Instantreset;
+    public bool performance;
     public static string IntToTimeString(int timeInMilliseconds)
     {
         System.TimeSpan timeSpan = System.TimeSpan.FromMilliseconds(timeInMilliseconds);
@@ -95,7 +97,8 @@ public class PlayerScript : MonoBehaviour
     }
     void Awake()
     {
-        Instance = this;
+        Instantreset = PlayerPrefs.GetInt("reset", 0) == 1;
+        performance = PlayerPrefs.GetInt("Perf", 0) == 1;
         maxVelocity = 20f;
         inputActions = new InputActions();
         input = inputActions.Default;
@@ -138,6 +141,7 @@ public class PlayerScript : MonoBehaviour
     }
     void Start()
     {
+        Instance = this;
         Camera.main.gameObject.transform.position -= new Vector3(0, 0, 290);
         startPos = transform.position;
     }
@@ -164,7 +168,7 @@ public class PlayerScript : MonoBehaviour
         Time.timeScale = 1f;
         Attractor = null;
         Repeller = null;
-        
+
     }
     private void StartTime()
     {
@@ -270,7 +274,7 @@ public class PlayerScript : MonoBehaviour
         {
             foreach (GameObject repeller in repellers)
             {
-                if(repeller == null) continue;
+                if (repeller == null) continue;
                 float distanceToRepeller = Vector2.Distance(transform.position, repeller.transform.position);
                 if (distanceToRepeller <= interactionRange && distanceToRepeller > minimumDistance)
                 {

@@ -12,6 +12,7 @@ public class Panel : MonoBehaviour
     }
     public void Close()
     {
+        Settings.instance.Save();
         StartCoroutine(close());
     }
     private IEnumerator open(){
