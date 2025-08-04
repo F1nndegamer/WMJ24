@@ -7,7 +7,7 @@ public class BlockDrag : MonoBehaviour
     public Vector3 offset;
     public bool isColliding;
     public bool isDragging;
-    private bool willdestroy;
+    public bool willdestroy;
     public bool canMove;
     public bool SimStarted;
     public bool perm = false;
@@ -69,6 +69,8 @@ public class BlockDrag : MonoBehaviour
             transform.localScale -= Vector3.one * Time.unscaledDeltaTime * 2.5f;
             yield return null;
         }
+
+        dragmanager.instance.Magnetsplaced -= 1;
         Destroy(gameObject);
         PlayerScript.Instance.UpdateMagnets();
     }
@@ -97,6 +99,7 @@ public class BlockDrag : MonoBehaviour
             SFXManager.instance.PlaySFX("Place");
         if (willdestroy)
         {
+            dragmanager.instance.Magnetsplaced -= 1;
             Destroy(gameObject);
         }
     }

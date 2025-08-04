@@ -64,6 +64,18 @@ public class PlayerDeath : MonoBehaviour
 
     IEnumerator Die(string message)
     {
+        int currentLevel = Int32.Parse(SceneManager.GetActiveScene().name.Substring(5));
+        Global.attempts[currentLevel - 1]++;
+        if (Global.attempts[currentLevel - 1] > 2)
+        {
+            skip.SetActive(true);
+        }
+        if (PlayerScript.Instance.Instantreset)
+        {
+            Retry();
+            yield break;
+        }
+
         deathScreen.SetActive(true);
         PlayerScript.Instance.SimilationStarted = false;
         deathmsg.text = message;
@@ -72,12 +84,6 @@ public class PlayerDeath : MonoBehaviour
 
         deathScreen.SetActive(true);
         deathScreen.GetComponent<Animator>().SetBool("show", true);
-        int currentLevel = Int32.Parse(SceneManager.GetActiveScene().name.Substring(5));
-        Global.attempts[currentLevel - 1]++;
-        if (Global.attempts[currentLevel - 1] > 2)
-        {
-            skip.SetActive(true);
-        }
     }
     public void NextLevel(bool skip)
     {

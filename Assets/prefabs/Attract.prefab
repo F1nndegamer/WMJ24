@@ -105,9 +105,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0, z: 0}
   isColliding: 0
-  isDragging: 1
+  isDragging: 0
   canMove: 1
   SimStarted: 0
+  perm: 0
   PlaceSpeed: 15
   targetScale: 0.1
 --- !u!50 &2747567378883553304
