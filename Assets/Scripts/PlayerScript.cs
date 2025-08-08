@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Rendering.Universal;
 using System.Collections;
+using System.Data.Common;
 public class PlayerScript : MonoBehaviour
 {
     public float attractionSpeed = 8f;
@@ -59,13 +60,13 @@ public class PlayerScript : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(paused);
         if (!Global.paused)
-        {
-            Time.timeScale = 1f;
-        }
+            {
+                Time.timeScale = 1f;
+            }
         totalTime.text = IntToTimeString(lastTotalTime + timeSpentThisLevel);
         thisTime.text = IntToTimeString(timeSpentThisLevel);
-
         if (SimilationStarted && !paused)
         {
             AttractOrRepelObjects(true);
@@ -77,7 +78,7 @@ public class PlayerScript : MonoBehaviour
                 elapsedTime %= 1f;
             }
         }
-        else
+        else if(!paused)
         {
             AttractOrRepelObjects(false);
             ApplyMovement(false);
