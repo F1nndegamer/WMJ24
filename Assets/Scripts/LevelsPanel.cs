@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ public class LevelsPanel : MonoBehaviour
     [Header("0 = easy, 1 = medium, 2 = hard")]
     public int[] difficulties;
     [SerializeField] private GameObject levelParent;
+    public List<string> taigenames;
+    
     void Start()
     {
         levelsUnlocked = PlayerPrefs.GetInt("levels");
@@ -51,6 +54,13 @@ public class LevelsPanel : MonoBehaviour
     }
     public void SetName()
     {
+        for (int i = 0; i < taigenames.Count; i++)
+        {
+            if (namee.text == taigenames[i])
+            {
+
+            }
+        }
         if (namee.text != "")
         {
             Debug.Log(namee.text);
